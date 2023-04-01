@@ -66,6 +66,7 @@ function template(ayahs) {
   return (document.getElementById("container").innerHTML = arab);
 }
 
-let id = location.href;
-id = id.match(/\d+/)[0];
-let surah = new Alquran(id);
+
+let id = new URLSearchParams(window.location.search);
+let index = id.get('id')
+let surah = new Alquran(index);
