@@ -42,7 +42,7 @@ class Alquran {
           btn.addEventListener("click", function () {
             this.id = this.dataset.id;
             Telegram.WebApp.showPopup({
-              title: "Popup title",
+              // title: "Popup title",
               message: `${ayahs[this.id].translation}`,
               buttons: [{ type: "close" }],
             });
