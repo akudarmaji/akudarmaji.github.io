@@ -6,11 +6,11 @@ class Alquran {
         template(ayahs);
 
         this.btnAudio = document.querySelectorAll(".btn-audio");
-        this.audio = document.querySelectorAll("#audio");
+        // this.audio = document.querySelectorAll("#audio");
         this.btnAudio.forEach((btn) => {
-          btn.addEventListener("click", function () {
-            this.id = this.dataset.id;
-            this.audio = new Audio(ayahs[this.id].audio.alafasy);
+          btn.addEventListener("click", async function () {
+            this.id = await this.dataset.id;
+            this.audio =await new Audio(ayahs[this.id].audio.alafasy);
             this.audio.play();
           });
         });
