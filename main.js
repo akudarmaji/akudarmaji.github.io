@@ -57,7 +57,7 @@ class Alquran {
 function template(ayahs) {
   let arab = "";
   for (let i = 0; i < ayahs.length; i++) {
-    arab += ` <button class="btn-audio relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 px-2 py-1.5 text-xs font-sm text-teal-500 font-bold" data-id="${i}"></button>
+    arab += ` <button class="btn-audio relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 px-2 py-1.5 text-xs font-sm text-teal-500 font-bold" data-id="${i}">♬°</button>
     <button class="btn-tafsir relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 px-2 py-1.5 text-xs font-sm text-teal-500 font-bold" data-id="${i}">Ayat ${ayahs[i].number.inSurah}</button>
     <div class="btn-terjemah hover:bg-white js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 tracking-wider relative flex  justify-end rounded-xl border border-gray-100 p-4 shadow-xl text-gray-400 sm:p-6 lg:p-8 transition transform hover:text-black hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:transform-none text-center text-4xl tracking-normal font-lateef" data-id="${i}">
     <p class="">${ayahs[i].arab}</p>
