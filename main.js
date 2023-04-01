@@ -8,9 +8,9 @@ class Alquran {
         this.btnAudio = document.querySelectorAll(".btn-audio");
         // this.audio = document.querySelectorAll("#audio");
         this.btnAudio.forEach((btn) => {
-          btn.addEventListener("click", async function () {
-            this.id = await this.dataset.id;
-            this.audio =await new Audio(ayahs[this.id].audio.alafasy);
+          btn.addEventListener("click", function () {
+            this.id = this.dataset.id;
+            this.audio = new Audio(ayahs[this.id].audio.alafasy);
             this.audio.play();
           });
         });
@@ -19,15 +19,17 @@ class Alquran {
         this.btnTafsir.forEach((btn) => {
           btn.addEventListener("click", function () {
             this.id = this.dataset.id;
-            this.text = document.getElementById('text-tafsir')
-            this.pTafsiran = document.getElementById('pTafsiran')
-            this.pTafsiran.scrollTo({top:0, behavior: "smooth"})
-            this.text.innerText = ayahs[this.id].tafsir.quraish
-            this.textTitle = document.getElementById('pAyat')
-            this.textTitle.innerHTML =`Juz ${ayahs[this.id].meta.juz}, Nomor Ayat ${ayahs[this.id].number.inQuran}, Halaman ${ayahs[this.id].meta.page}`
-            
-            
-            
+            this.text = document.getElementById("text-tafsir");
+            this.pTafsiran = document.getElementById("pTafsiran");
+            this.pTafsiran.scrollTo({ top: 0, behavior: "smooth" });
+            this.text.innerText = ayahs[this.id].tafsir.quraish;
+            this.textTitle = document.getElementById("pAyat");
+            this.textTitle.innerHTML = `Juz ${
+              ayahs[this.id].meta.juz
+            }, Nomor Ayat ${ayahs[this.id].number.inQuran}, Halaman ${
+              ayahs[this.id].meta.page
+            }`;
+
             document.getElementById("box-model").classList.remove("invisible");
             document
               .getElementById("closes")
@@ -57,13 +59,13 @@ function template(ayahs) {
   for (let i = 0; i < ayahs.length; i++) {
     arab += ` <button class="btn-audio relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 px-2 py-1.5 text-xs font-sm text-teal-500 font-bold" data-id="${i}"></button>
     <button class="btn-tafsir relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 px-2 py-1.5 text-xs font-sm text-teal-500 font-bold" data-id="${i}">Ayat ${ayahs[i].number.inSurah}</button>
-    <div class="btn-terjemah hover:bg-white js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 tracking-wider relative flex  justify-end rounded-xl border border-gray-100 p-4 shadow-xl text-slate-100 sm:p-6 lg:p-8 transition transform hover:text-black hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:transform-none text-center text-4xl tracking-normal font-lateef" data-id="${i}">
+    <div class="btn-terjemah hover:bg-white js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-50 tracking-wider relative flex  justify-end rounded-xl border border-gray-100 p-4 shadow-xl text-gray-400 sm:p-6 lg:p-8 transition transform hover:text-black hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:transform-none text-center text-4xl tracking-normal font-lateef" data-id="${i}">
     <p class="">${ayahs[i].arab}</p>
    </div>`;
   }
   return (document.getElementById("container").innerHTML = arab);
 }
 
-let id = location.href
-id = id.match(/\d+/)[0]
+let id = location.href;
+id = id.match(/\d+/)[0];
 let surah = new Alquran(id);
