@@ -13,7 +13,7 @@ let jadwalJember = fetch(`https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}
 document.getElementById("simple-search").onkeyup = function () {
   let inputKeyword = document
     .getElementById("simple-search")
-    .value.toUpperCase();
+    .value.toUpperCase().replace(' ','');
   console.log(inputKeyword);
   for (i in kode) {
     if (inputKeyword == i) {
@@ -34,14 +34,14 @@ document.getElementById("simple-search").onkeyup = function () {
 
 let template = function(data) {
   return `<div class="p-1 tracking-tighter justify-center m-5 block max-w-auto bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
-  <h5 class=" leading-6 mb-2 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
+  <h5 class="drop-shadow-lg leading-6 mb-2 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
     <p>${data.lokasi}</p>
     <p>${data.daerah}</p>
     <p class="text-sm text-slate-400">${data.jadwal.tanggal}</p>
   </h5>
   <div class="flex m-0 justify-center">
     <div class="rounded-lg ml-4 h-7 w-auto bg-yellow-100 flex justify-center">
-      <ul class="p-1 pb-2">B: ${data.koordinat.bujur}
+      <ul class="drop-shadow-lg p-1 pb-2">B: ${data.koordinat.bujur}
         <li class="">Imsak</li>
         <li class="text-slate-400">Subuh</li>
         <li class="">Terbit</li>
@@ -53,7 +53,7 @@ let template = function(data) {
       </ul>
     </div>
     <div class="rounded-lg ml-4 h-7 w-auto bg-sky-100 flex justify-center">
-      <ul class="p-1 pb-2">L: ${data.koordinat.lintang} 
+      <ul class="drop-shadow-lg p-1 pb-2">L: ${data.koordinat.lintang} 
         <li class="">${data.jadwal.imsak}</li>
         <li class="text-slate-400">${data.jadwal.subuh}</li>
         <li class="">${data.jadwal.terbit}</li>
