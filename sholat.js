@@ -18,18 +18,17 @@ document.getElementById("simple-search").onkeyup = function () {
          Telegram.WebApp.showPopup({
             title: `${data.lokasi} ${data.daerah}`,
             message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
-            // buttons: [{ type: "close" }],
+            buttons: [{ type: "close" }],
           });
-         document.getElementById('result-sholat').innerHTML = `<div class="justify-center m-5 block max-w-auto p-4 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-96">
+         document.getElementById('result-sholat').innerHTML = `<div class="justify-center m-5 block max-w-auto p-4 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
          <h5 class=" leading-6 mb-6 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
            <p>${data.lokasi}</p>
            <p>${data.daerah}</p>
-           <p class="text-sm text-slate-200">B: ${data.koordinat.bujur} L: ${data.koordinat.lintang}</p>
            <p class="text-sm text-slate-400">${data.jadwal.tanggal}</p>
          </h5>
          <div class="colums flex justify-center">
            <div class="rounded-lg ml-4 h-7 w-20 bg-yellow-100 flex justify-center">
-             <ul class="">WAKTU
+             <ul class="">B: ${data.koordinat.bujur}
                <li class="">Imsak</li>
                <li class="">Subuh</li>
                <li class="">Terbit</li>
@@ -41,7 +40,7 @@ document.getElementById("simple-search").onkeyup = function () {
              </ul>
            </div>
            <div class="rounded-lg ml-4 h-7 w-20 bg-sky-100 flex justify-center">
-             <ul>JAM 
+             <ul>L: ${data.koordinat.lintang} 
                <li class="">${data.jadwal.imsak}</li>
                <li class="">${data.jadwal.subuh}</li>
                <li class="">${data.jadwal.terbit}</li>
