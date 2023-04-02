@@ -3,15 +3,17 @@ let tahun = date.getFullYear()
 let bulan = date.getMonth()+1
 let tanggal = date.getDate()
 
-window.addEventListener('load', function() {
+function onload() {
   Telegram.WebApp.ready();
-  
   Telegram.WebApp.expand();
-})
+}
 
 document.onreadystatechange = () => {
   if(document.readyState === "complete") {
-    document.getElementById('loader').style.display = 'none';
+    setTimeout(() => {
+      document.getElementById('loader').style.display = 'none';
+    },1500)
+    document.getElementById('container').classList.remove('hidden')
   }
 }
 
@@ -20,7 +22,6 @@ let jadwalJember = fetch(`https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}
         .then((response) => response.json())
         .then(({ data }) => {
           document.getElementById('result').innerHTML = template(data)
-          console.log(data)
         })
 
 document.getElementById("simple-search").onkeyup = function () {
@@ -33,7 +34,6 @@ document.getElementById("simple-search").onkeyup = function () {
       fetch(`https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`)
         .then((response) => response.json())
         .then(({ data }) => {
-          console.log(data)
          Telegram.WebApp.showPopup({
             title: `${data.lokasi} ${data.daerah}`,
             message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
