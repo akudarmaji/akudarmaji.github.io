@@ -4,6 +4,8 @@ let bulan = date.getMonth()+1
 let tanggal = date.getDate()
 
 window.addEventListener('load', function() {
+  Telegram.WebApp.ready();
+  
   Telegram.WebApp.expand();
 })
 

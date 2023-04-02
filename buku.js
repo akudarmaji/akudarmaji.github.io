@@ -32,6 +32,14 @@ class Buku {
     
   }
 }
+
+window.addEventListener('load', function() {
+  Telegram.WebApp.ready();
+  
+  Telegram.WebApp.expand();
+})
+
+
 const id = new URLSearchParams(window.location.search)
 const index = id.get('dari')
 const index2 = id.get('sampai')

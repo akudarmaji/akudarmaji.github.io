@@ -32,6 +32,13 @@
     </script>
   </head>
   <body>
+    <div id="loader" class="absolute z-10 p-10 min-h-screen w-full flex items-center justify-center">
+      <div class="relative">
+        <div class="bg-white p-3 rounded-lg shadow-2xl drop-shadow-lg">Please Wait</div>
+        <div class="absolute top-0 right-0 -mr-1 -mt-1 w-4 h-4 rounded-full bg-green-300 animate-ping"></div>
+        <div class="absolute top-0 right-0 -mr-1 -mt-1 w-4 h-4 rounded-full bg-green-300"></div>
+      </div>
+    </div>
     <div id="container" class="">
     </div>
     <div  id="box-model" class="invisible fixed top-0 left-0 z-[1055] h-full w-full overflow-y overflow-x-hidden outline-none"

@@ -54,6 +54,17 @@ class Alquran {
   }
 }
 
+window.addEventListener('load', function() {
+  Telegram.WebApp.ready();
+  
+  Telegram.WebApp.expand();
+})
+document.onreadystatechange = () => {
+  if(document.readyState === "complete") {
+    document.getElementById('loader').style.display = 'none';
+  }
+}
+
 function template(ayahs) {
   let arab = "";
   for (let i = 0; i < ayahs.length; i++) {
