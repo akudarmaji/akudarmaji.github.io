@@ -1,3 +1,9 @@
+let date = new Date()
+let tahun = date.getFullYear()
+let bulan = date.getMonth()+1
+let tanggal = date.getDate()
+
+
 document.getElementById("simple-search").onkeyup = function () {
   let inputKeyword = document
     .getElementById("simple-search")
@@ -5,7 +11,7 @@ document.getElementById("simple-search").onkeyup = function () {
   console.log(inputKeyword);
   for (i in kode) {
     if (inputKeyword == i) {
-      fetch(`https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/2023/4/2`)
+      fetch(`https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`)
         .then((response) => response.json())
         .then(({ data }) => {
          Telegram.WebApp.showPopup({
