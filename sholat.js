@@ -3,6 +3,12 @@ let tahun = date.getFullYear()
 let bulan = date.getMonth()+1
 let tanggal = date.getDate()
 
+let jadwalJember = fetch(`https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`)
+        .then((response) => response.json())
+        .then(({ data }) => {
+          document.getElementById('result').innerHTML = template(data)
+          console.log(data)
+        })
 
 document.getElementById("simple-search").onkeyup = function () {
   let inputKeyword = document
@@ -20,45 +26,47 @@ document.getElementById("simple-search").onkeyup = function () {
             message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
             buttons: [{ type: "close" }],
           });
-         document.getElementById('result-sholat').innerHTML = `<div class="justify-center m-5 block max-w-auto p-4 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
-         <h5 class=" leading-6 mb-6 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
-           <p>${data.lokasi}</p>
-           <p>${data.daerah}</p>
-           <p class="text-sm text-slate-400">${data.jadwal.tanggal}</p>
-         </h5>
-         <div class="colums flex justify-center">
-           <div class="rounded-lg ml-4 h-7 w-20 bg-yellow-100 flex justify-center">
-             <ul class="">B: ${data.koordinat.bujur}
-               <li class="">Imsak</li>
-               <li class="">Subuh</li>
-               <li class="">Terbit</li>
-               <li class="">Duha</li>
-               <li class="">Dzuhur</li>
-               <li class="">Ashar</li>
-               <li class="">Maghrib</li>
-               <li class="">Isya</li>
-             </ul>
-           </div>
-           <div class="rounded-lg ml-4 h-7 w-20 bg-sky-100 flex justify-center">
-             <ul>L: ${data.koordinat.lintang} 
-               <li class="">${data.jadwal.imsak}</li>
-               <li class="">${data.jadwal.subuh}</li>
-               <li class="">${data.jadwal.terbit}</li>
-               <li class="">${data.jadwal.dhuha}</li>
-               <li class="">${data.jadwal.dzuhur}</li>
-               <li class="">${data.jadwal.ashar}</li>
-               <li class="">${data.jadwal.maghrib}</li>
-               <li class="">${data.jadwal.isya}</li>
-             </ul>
-           </div>
-         </div>
-       </div>`
+         document.getElementById('result-sholat').innerHTML = template(data)
         });
     }
   }
 };
 
-
+let template = function(data) {
+  return `<div class="p-1 tracking-tighter justify-center m-5 block max-w-auto bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
+  <h5 class=" leading-6 mb-2 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
+    <p>${data.lokasi}</p>
+    <p>${data.daerah}</p>
+    <p class="text-sm text-slate-400">${data.jadwal.tanggal}</p>
+  </h5>
+  <div class="flex m-0 justify-center">
+    <div class="rounded-lg ml-4 h-7 w-auto bg-yellow-100 flex justify-center">
+      <ul class="p-1 pb-2">B: ${data.koordinat.bujur}
+        <li class="">Imsak</li>
+        <li class="text-slate-400">Subuh</li>
+        <li class="">Terbit</li>
+        <li class="text-slate-400">Duha</li>
+        <li class="">Dzuhur</li>
+        <li class="text-slate-400">Ashar</li>
+        <li class="">Maghrib</li>
+        <li class="text-slate-400">Isya</li>
+      </ul>
+    </div>
+    <div class="rounded-lg ml-4 h-7 w-auto bg-sky-100 flex justify-center">
+      <ul class="p-1 pb-2">L: ${data.koordinat.lintang} 
+        <li class="">${data.jadwal.imsak}</li>
+        <li class="text-slate-400">${data.jadwal.subuh}</li>
+        <li class="">${data.jadwal.terbit}</li>
+        <li class="text-slate-400">${data.jadwal.dhuha}</li>
+        <li class="">${data.jadwal.dzuhur}</li>
+        <li class="text-slate-400">${data.jadwal.ashar}</li>
+        <li class="">${data.jadwal.maghrib}</li>
+        <li class="text-slate-400">${data.jadwal.isya}</li>
+      </ul>
+    </div>
+  </div>
+</div>`
+}
 
 
 let kode = {
