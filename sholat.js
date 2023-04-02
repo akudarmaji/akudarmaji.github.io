@@ -4,8 +4,17 @@ let bulan = date.getMonth() + 1;
 let tanggal = date.getDate();
 
 window.onload = () => {
+  console.log("oke");
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
+  fetch(
+    `https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`
+  )
+    .then((response) => response.json())
+    .then(({ data }) => {
+      Telegram.WebApp.ready();
+      document.getElementById("result").innerHTML = template(data);
+    });
 };
 
 document.onreadystatechange = () => {
@@ -16,14 +25,7 @@ document.onreadystatechange = () => {
   }
 };
 
-let jadwalJember = fetch(
-  `https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`
-)
-  .then((response) => response.json())
-  .then(({ data }) => {
-    Telegram.WebApp.ready();
-    document.getElementById("result").innerHTML = template(data);
-  });
+
 
 document.getElementById("simple-search").onkeyup = function () {
   let inputKeyword = document
