@@ -1,51 +1,56 @@
-let date = new Date()
-let tahun = date.getFullYear()
-let bulan = date.getMonth()+1
-let tanggal = date.getDate()
+let date = new Date();
+let tahun = date.getFullYear();
+let bulan = date.getMonth() + 1;
+let tanggal = date.getDate();
 
-function onload() {
+window.onload = () => {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
-}
+};
 
 document.onreadystatechange = () => {
-  if(document.readyState === "complete") {
+  if (document.readyState === "complete") {
     setTimeout(() => {
-      document.getElementById('loader').style.display = 'none';
-    },1500)
-    document.getElementById('container').classList.remove('hidden')
+      document.getElementById("loader").style.display = "none";
+    }, 500);
   }
-}
+};
 
-
-let jadwalJember = fetch(`https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`)
-        .then((response) => response.json())
-        .then(({ data }) => {
-          document.getElementById('result').innerHTML = template(data)
-        })
+let jadwalJember = fetch(
+  `https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`
+)
+  .then((response) => response.json())
+  .then(({ data }) => {
+    Telegram.WebApp.ready();
+    document.getElementById("result").innerHTML = template(data);
+  });
 
 document.getElementById("simple-search").onkeyup = function () {
   let inputKeyword = document
     .getElementById("simple-search")
-    .value.toUpperCase().replace(' ','');
+    .value.toUpperCase()
+    .replace(" ", "");
   console.log(inputKeyword);
   for (i in kode) {
     if (inputKeyword == i) {
-      fetch(`https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`)
+      fetch(
+        `https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`
+      )
         .then((response) => response.json())
         .then(({ data }) => {
-         Telegram.WebApp.showPopup({
+          Telegram.WebApp.ready();
+          Telegram.WebApp.showPopup({
             title: `${data.lokasi} ${data.daerah}`,
             message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
             buttons: [{ type: "close" }],
           });
-         document.getElementById('result-sholat').innerHTML = template(data)
+          document.getElementById("result-sholat").innerHTML = template(data);
         });
     }
   }
 };
 
-let template = function(data) {
+let template = function (data) {
   return `<div id="jadwal" class="p-1 tracking-tighter justify-center m-5 block max-w-auto bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
   <h5 class="drop-shadow-lg leading-6 mb-2 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
     <p>${data.lokasi}</p>
@@ -78,9 +83,8 @@ let template = function(data) {
       </ul>
     </div>
   </div>
-</div>`
-}
-
+</div>`;
+};
 
 let kode = {
   ACEHBARAT: 0101,
