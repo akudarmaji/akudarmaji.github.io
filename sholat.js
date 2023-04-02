@@ -19,10 +19,24 @@ document.getElementById("simple-search").onkeyup = function () {
             message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
             buttons: [{ type: "close" }],
           });
+         document.getElementById('result-sholat').innerHTML = `<div class="justify-center m-8 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 ">
+         <h5 class="mb-2 text-center text-xl font-bold tracking-tight dark:text-white"><p>${data.daerah}</p><p>${data.lokasi}</p></h5>
+         <ul>${data.jadwal.tanggal}
+         <li class="ml-10">imsak ${data.jadwal.imsak}</li>
+         <li class="ml-10">subuh ${data.jadwal.subuh}</li>
+         <li class="ml-10">dzuhur ${data.jadwal.dzuhur}</li>
+         <li class="ml-10">ashar ${data.jadwal.ashar}</li>
+         <li class="ml-10">maghrib ${data.jadwal.maghrib}</li>
+         <li class="ml-10">isya ${data.jadwal.isya}</li>
+       </ul>
+       </div>`
         });
     }
   }
 };
+
+
+
 
 let kode = {
   ACEHBARAT: 0101,
