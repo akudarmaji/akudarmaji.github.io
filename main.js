@@ -54,14 +54,18 @@ class Alquran {
   }
 }
 
-window.addEventListener('load', function() {
+function onload() {
   Telegram.WebApp.ready();
-  
   Telegram.WebApp.expand();
-})
+  
+}
+
 document.onreadystatechange = () => {
   if(document.readyState === "complete") {
-    document.getElementById('loader').style.display = 'none';
+    setTimeout(() => {
+      document.getElementById('loader').style.display = 'none';
+    },1500)
+    document.getElementById('container').classList.remove('hidden')
   }
 }
 
