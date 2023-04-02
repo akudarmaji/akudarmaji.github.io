@@ -14,21 +14,45 @@ document.getElementById("simple-search").onkeyup = function () {
       fetch(`https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`)
         .then((response) => response.json())
         .then(({ data }) => {
+          console.log(data)
          Telegram.WebApp.showPopup({
             title: `${data.lokasi} ${data.daerah}`,
             message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
-            buttons: [{ type: "close" }],
+            // buttons: [{ type: "close" }],
           });
-         document.getElementById('result-sholat').innerHTML = `<div class="justify-center m-8 block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 ">
-         <h5 class="mb-2 text-center text-xl font-bold tracking-tight dark:text-white"><p>${data.daerah}</p><p>${data.lokasi}</p></h5>
-         <ul>${data.jadwal.tanggal}
-         <li class="ml-10">imsak ${data.jadwal.imsak}</li>
-         <li class="ml-10">subuh ${data.jadwal.subuh}</li>
-         <li class="ml-10">dzuhur ${data.jadwal.dzuhur}</li>
-         <li class="ml-10">ashar ${data.jadwal.ashar}</li>
-         <li class="ml-10">maghrib ${data.jadwal.maghrib}</li>
-         <li class="ml-10">isya ${data.jadwal.isya}</li>
-       </ul>
+         document.getElementById('result-sholat').innerHTML = `<div class="justify-center m-5 block max-w-auto p-4 bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-96">
+         <h5 class=" leading-6 mb-6 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
+           <p>${data.lokasi}</p>
+           <p>${data.daerah}</p>
+           <p class="text-sm text-slate-200">B: ${data.koordinat.bujur} L: ${data.koordinat.lintang}</p>
+           <p class="text-sm text-slate-400">${data.jadwal.tanggal}</p>
+         </h5>
+         <div class="colums flex justify-center">
+           <div class="rounded-lg ml-4 h-7 w-20 bg-yellow-100 flex justify-center">
+             <ul class="">WAKTU
+               <li class="">Imsak</li>
+               <li class="">Subuh</li>
+               <li class="">Terbit</li>
+               <li class="">Duha</li>
+               <li class="">Dzuhur</li>
+               <li class="">Ashar</li>
+               <li class="">Maghrib</li>
+               <li class="">Isya</li>
+             </ul>
+           </div>
+           <div class="rounded-lg ml-4 h-7 w-20 bg-sky-100 flex justify-center">
+             <ul>JAM 
+               <li class="">${data.jadwal.imsak}</li>
+               <li class="">${data.jadwal.subuh}</li>
+               <li class="">${data.jadwal.terbit}</li>
+               <li class="">${data.jadwal.dhuha}</li>
+               <li class="">${data.jadwal.dzuhur}</li>
+               <li class="">${data.jadwal.ashar}</li>
+               <li class="">${data.jadwal.maghrib}</li>
+               <li class="">${data.jadwal.isya}</li>
+             </ul>
+           </div>
+         </div>
        </div>`
         });
     }
