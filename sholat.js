@@ -3,6 +3,17 @@ let tahun = date.getFullYear()
 let bulan = date.getMonth()+1
 let tanggal = date.getDate()
 
+window.addEventListener('load', function() {
+  Telegram.WebApp.expand();
+})
+
+document.onreadystatechange = () => {
+  if(document.readyState === "complete") {
+    document.getElementById('loader').style.display = 'none';
+  }
+}
+
+
 let jadwalJember = fetch(`https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`)
         .then((response) => response.json())
         .then(({ data }) => {
@@ -33,7 +44,7 @@ document.getElementById("simple-search").onkeyup = function () {
 };
 
 let template = function(data) {
-  return `<div class="p-1 tracking-tighter justify-center m-5 block max-w-auto bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
+  return `<div id="jadwal" class="p-1 tracking-tighter justify-center m-5 block max-w-auto bg-gray-200 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 text-gray-500 h-80">
   <h5 class="drop-shadow-lg leading-6 mb-2 pt-0 top-0 text-center text-2xl font-lateef tracking-normal dark:text-white">
     <p>${data.lokasi}</p>
     <p>${data.daerah}</p>
