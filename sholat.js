@@ -10,7 +10,7 @@ document.getElementById("simple-search").onkeyup = function () {
         .then(({ data }) => {
          Telegram.WebApp.showPopup({
             title: `${data.lokasi} ${data.daerah}`,
-            message: `${data.jadwal.tanggal}`,
+            message: `${data.jadwal.tanggal}\nimsak ${data.jadwal.imsak}\nsubuh ${data.jadwal.subuh}\ndzuhur ${data.jadwal.dzuhur}\nashar ${data.jadwal.ashar}\nmaghrib ${data.jadwal.maghrib}\nisya ${data.jadwal.isya}`,
             buttons: [{ type: "close" }],
           });
         });
