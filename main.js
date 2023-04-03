@@ -1,3 +1,12 @@
+let id = new URLSearchParams(window.location.search);
+let index = id.get('id')
+let btnBackTop = document.getElementById('to-top-button')
+let backTop = document.getElementById('to-top-button')
+backTop.addEventListener('click', () => {
+  document.documentElement.scrollTo({ top: 0, behavior: "smooth" })
+})
+
+
 class Alquran {
   constructor(index = 1) {
     this.ayat = fetch(`https://quran-api-id.vercel.app/surahs/${index}`)
@@ -52,21 +61,36 @@ class Alquran {
         });
       });
   }
+  progress() {
+    let scrollTop = document.documentElement.scrollTop;
+    let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+    let scrolled = Math.round((scrollTop / scrollHeight)*100)
+    btnBackTop.innerText = scrolled+'%'
+    if(scrolled >1) {
+      btnBackTop.classList.remove('hidden')
+    }else {
+      btnBackTop.classList.add('hidden')
+    }
+  }
 }
 
-function onload() {
+window.onload = () => {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
-  
-}
+  document.documentElement.scrollTo({ top: 0, behavior: "smooth" })
+};
+
+
+
+
+
+
 
 document.onreadystatechange = () => {
   if(document.readyState === "complete") {
-    setTimeout(() => {
-      document.getElementById('loader').style.display = 'none';
-    },1500)
-    document.getElementById('container').classList.remove('hidden')
+    btnBackTop.classList.add('hidden')
   }
+  
 }
 
 function template(ayahs) {
@@ -82,6 +106,7 @@ function template(ayahs) {
 }
 
 
-let id = new URLSearchParams(window.location.search);
-let index = id.get('id')
+
 let surah = new Alquran(index);
+window.onscroll = function(){surah.progress()}
+
