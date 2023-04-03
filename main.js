@@ -12,7 +12,7 @@ class Alquran {
     this.ayat = fetch(`https://quran-api-id.vercel.app/surahs/${index}`)
       .then((response) => response.json())
       .then(({ ayahs }) => {
-        template(ayahs);
+        document.getElementById("container").innerHTML = template(ayahs);
 
         this.btnAudio = document.querySelectorAll(".btn-audio");
         // this.audio = document.querySelectorAll("#audio");
@@ -94,15 +94,15 @@ document.onreadystatechange = () => {
 }
 
 function template(ayahs) {
-  let arab = "";
+  let arab = ``;
   for (let i = 0; i < ayahs.length; i++) {
-    arab += ` <button class="btn-audio border border-teal-300 relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 bg-opacity-40 px-2  text-xs font-sm text-teal-500 font-bold" data-id="${i}">♬°</button>
-    <button class="btn-tafsir border border-teal-300 relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 bg-opacity-40 px-2 py-0 text-sm font-lateef font-bold font-sm text-teal-500" data-id="${i}">Ayat ${ayahs[i].number.inSurah}</button>
-    <div class="btn-terjemah bg-stone-100 hover:bg-stone-200 js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl relative flex  justify-end rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-4xl font-lateef" data-id="${i}">
-    <p class="">${ayahs[i].arab}</p>
+    arab += ` <button class="btn-audio border border-teal-300 relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-id="${i}">♬°</button>
+    <button class="btn-tafsir border border-teal-300 relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 bg-opacity-40 px-2 py-0 text-sm font-lateef font-extralight text-teal-500" data-id="${i}">Tafsir</button>
+    <div class="btn-terjemah bg-stone-100 hover:bg-stone-200 js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl relative flex  justify-end rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-2xl tracking-wide font-lateef leading-loose" data-id="${i}">
+    <p id="arab${i}" class="arabic">${ayahs[i].arab}</p>
    </div>`;
   }
-  return (document.getElementById("container").innerHTML = arab);
+  return (arab);
 }
 
 
