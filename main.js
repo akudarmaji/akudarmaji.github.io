@@ -98,7 +98,7 @@ function template(ayahs) {
   for (let i = 0; i < ayahs.length; i++) {
     arab += ` <button class="btn-audio border border-teal-300 relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 bg-opacity-40 px-2  text-xs font-sm text-teal-500 font-bold" data-id="${i}">♬°</button>
     <button class="btn-tafsir border border-teal-300 relative z-10 shadow-xl h-6 w-15 -right-0 top-2 rounded-md bg-teal-100 bg-opacity-40 px-2 py-0 text-sm font-lateef font-bold font-sm text-teal-500" data-id="${i}">Ayat ${ayahs[i].number.inSurah}</button>
-    <div class="btn-terjemah bg-stone-100 hover:bg-white js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl relative flex  justify-end rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform hover:text-black hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-4xl font-semibold font-lateef" data-id="${i}">
+    <div class="btn-terjemah bg-stone-100 hover:bg-white js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl relative flex  justify-end rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform hover:text-black hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-4xl font-lateef" data-id="${i}">
     <p class="">${ayahs[i].arab}</p>
    </div>`;
   }
