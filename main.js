@@ -41,7 +41,10 @@ class Alquran {
     const btnAudio = document.querySelectorAll(".btn-audio");
     btnAudio.forEach((btn) => {
       btn.addEventListener("click", function () {
-        new Audio(this.dataset.alafasy).play()
+        const audio = new Audio(this.dataset.alafasy)
+        audio.addEventListener('canplaythrough',function() {
+          audio.play()
+        })
       });
     });
     const btnTafsir = document.querySelectorAll('.btn-tafsir')
