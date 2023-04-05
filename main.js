@@ -3,7 +3,7 @@ const el = {
   audioAlafasy: document.getElementById("audio-alafasy"),
   ayat: document.getElementById("p-ayat"),
   modal: document.getElementById("box-model"),
-  tafsir: document.getElementById("text-tafsir"),
+  textModal: document.getElementById("text-modal"),
   close: document.getElementById("closes"),
   topBtn: document.getElementById("to-top-button"),
 };
@@ -41,25 +41,34 @@ class Alquran {
     const btnAudio = document.querySelectorAll(".btn-audio");
     btnAudio.forEach((btn) => {
       btn.addEventListener("click", function () {
-        el.audioAlafasy.setAttribute("src", this.dataset.alafasy);
+        new Audio(this.dataset.alafasy).play()
       });
     });
     const btnTafsir = document.querySelectorAll('.btn-tafsir')
     btnTafsir.forEach(btn => {
       btn.addEventListener('click', function() {
-        el.tafsir.scrollTo(scrolling.smooth);
+        el.modal.scrollTo(scrolling.smooth);
         el.modal.classList.remove('invisible')
-        el.tafsir.innerText = this.dataset.tafsir
+        el.textModal.innerText = this.dataset.tafsir
+      })
+    })
+    const btnSub = document.querySelectorAll('.btn-sub')
+    btnSub.forEach(btn => {
+      btn.addEventListener('click', function() {
+        el.modal.scrollTo(scrolling.smooth);
+        el.modal.classList.remove('invisible')
+        el.textModal.innerText = this.dataset.sub
       })
     })
   }
 }
 
 function template(arab, alafasy, translation, quraish) {
-  return `<div class="m-1 bg-stone-100 hover:bg-stone-200 js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl flex justify-end rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-2xl tracking-wider leading-relaxed font-lateef">${arab}
+  return `<div class="mb-1 bg-stone-100 hover:bg-stone-200 js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl flex flex-row-reverse rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-2xl tracking-wider leading-relaxed font-lateef">${arab}
 
-             <button class="btn-tafsir border border-teal-300 absolute z-10 shadow-xl h-6 right-8 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-tafsir="${quraish}">Tafsir</button>
-             <button class="btn-audio border border-teal-300 absolute z-10 shadow-xl h-6  -right-2 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-alafasy="${alafasy}">♬°</button>
+             <button class="btn-tafsir border border-teal-300 absolute shadow-xl h-6 left-0 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-tafsir="${quraish}">Tafsir</button>
+             <button class="btn-sub border border-teal-300 absolute shadow-xl h-6  right-7 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-sub="${translation}">Sub</button>
+             <button class="btn-audio border border-teal-300 absolute shadow-xl h-6  -right-2 -top-3 rounded-md bg-teal-100 bg-opacity-40  px-2 text-sm text-teal-500 font-extralight" data-alafasy="${alafasy}">♬°</button>
                </div>`;
 }
 
