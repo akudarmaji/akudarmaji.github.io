@@ -1,3 +1,9 @@
+const WebApp = {
+  ready: Telegram.WebApp.ready(),
+  expand: Telegram.WebApp.expand(),
+  close: Telegram.WebApp.expand()
+}
+
 const el = {
   modal: document.getElementById("box-model"),
   textModal: document.getElementById("text-modal"),
@@ -87,10 +93,6 @@ class Arabiyah extends Alquran{
       const alfa = this.tr
       const sub = this.translation
       const arab = this.arab
-      const juz = this.juz
-      const page = this.page
-      const inSurah = this.inSurah
-      const inQuran = this.inQuran
       const divarab = document.getElementById(`arab${i}`)
       btn.addEventListener('click', function(e) {
         const id = this.dataset.sub
@@ -120,6 +122,22 @@ class Arabiyah extends Alquran{
       })
     })
   }
+  getPopUp() {
+    const divApp = document.querySelectorAll('.app')
+    const juz = this.juz
+    const page = this.page
+    const inSurah = this.inSurah
+    const inQuran = this.inQuran
+    divApp.forEach((btn) => {
+      btn.addEventListener('click', function() {
+        const id = this.dataset.id
+        Telegram.WebApp.showPopup({
+          title: `JUZ ${juz[id]}`,
+                message: `alquran halaman ${page[id]}\nnomor ayat ${inSurah[id]} pada surat ini\nnomor ayat ${inQuran[id]} pada total keseluruhan`,
+        })
+      })
+    })
+  }
   closes() {
     el.modal.classList.add('invisible')
   }
@@ -130,10 +148,13 @@ class Arabiyah extends Alquran{
 
 const arabiyah = new Arabiyah(Datas)
 arabiyah.init().then(() => {
+  WebApp.ready
+  WebApp.expand
   arabiyah.getTemplate()
   arabiyah.getAudio()
   arabiyah.getSub()
   arabiyah.getTafsir()
+  arabiyah.getPopUp()
 })
 
 
