@@ -10,6 +10,7 @@ const el = {
 const Datas = {
   id: new URLSearchParams(window.location.search).get("id"),
   url: "https://quran-api-id.vercel.app/surahs/",
+  url2: "https://al-quran-8d642.firebaseio.com/surat/"
 };
 
 class Alquran {
@@ -37,16 +38,25 @@ class Alquran {
     })
    
   }
+  async fetching2(url) {
+    const alfabet = await(await fetch(url)).json()
+    this.tr = []
+    alfabet.forEach(({tr}) => {
+    this.tr.push(tr)
+    })
+  }
 
 }
 class Arabiyah extends Alquran{
-  constructor({url,id}) {
+  constructor({url, url2,id}) {
     super()
+    this.url2 = url2
     this.url = url
     this.id = id
   }
   async init() {
    await   this.fetching(this.url+this.id)
+    await this.fetching2(this.url2+this.id+'.json')
   }
   getTemplate() {
     let app = ``
@@ -66,14 +76,15 @@ class Arabiyah extends Alquran{
     btnAudio.forEach(btn  => {
       const audio = this.audio
       btn.addEventListener('click', function() {
-        new Audio(audio[this.dataset.alafasy]).play()
+        const audioPlay = new Audio(audio[this.dataset.alafasy])
+        audioPlay.play()
       })
     })
   }
   getSub() {
     const btnSub = document.querySelectorAll('.btn-sub')
     btnSub.forEach((btn, i)  => {
-      
+      const alfa = this.tr
       const sub = this.translation
       const arab = this.arab
       const juz = this.juz
@@ -84,8 +95,10 @@ class Arabiyah extends Alquran{
       btn.addEventListener('click', function(e) {
         const id = this.dataset.sub
         if(divarab.innerHTML == arab[id]) {
-          divarab.innerText = `${sub[id]}\nJuz ${juz[id]}, Hal ${page[id]}, Nomor Surat ${inSurah[id]}, Nomor Ayat ${inQuran[id]}`
+          divarab.innerText = sub[id]
           divarab.classList.add('text-sm','text-justify','leading-5')
+        } else if(divarab.innerHTML == sub[id]) {
+          divarab.innerHTML = alfa[id]
         }else {
           divarab.innerText = arab[id]
           divarab.classList.remove('text-sm','text-justify','leading-5')
@@ -122,6 +135,7 @@ arabiyah.init().then(() => {
   arabiyah.getSub()
   arabiyah.getTafsir()
 })
+
 
 
 window.onscroll = function() {
