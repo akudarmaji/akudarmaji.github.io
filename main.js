@@ -69,10 +69,10 @@ class Arabiyah extends Alquran{
     this.arab.forEach((e, i) => {
       app+= `<div class="app mb-1 bg-stone-100 hover:bg-stone-200 js-show-on-scroll ml-2 mr-2 bg-clip-padding backdrop-filter backdrop-blur-xl flex flex-row-reverse rounded-xl border-double  border-4 border-teal-100 p-4 shadow-xl text-gray-700 sm:p-6 lg:p-8 transition transform motion-reduce:transition-none motion-reduce:hover:transform-none text-right text-2xl tracking-wider leading-relaxed font-lateef" data-id="${i}">
       <div class"" id="arab${i}">${e}</div>
-      <button class="btn-tafsir border border-teal-300 absolute shadow-xl h-6  left-8 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-tafsir="${i}">Tafsir</button>
-      <button class="btn-sub border border-teal-300 absolute shadow-xl h-6  left-0 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-2  text-sm text-teal-500 font-extralight" data-sub="${i}">↹</button>
+      <button class="btn-tafsir border border-teal-300 absolute shadow-xl h-6  left-6 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-1  text-sm text-teal-500 font-extralight" data-tafsir="${i}">Tafsir</button>
+      <button class="btn-details border border-teal-300 absolute shadow-xl h-6  -left-1 -top-3 rounded-md bg-teal-100 bg-opacity-40 px-1  text-sm text-teal-500 font-extralight" data-sub="${i}">🔄</button>
+      <button class="btn-audio border border-teal-300 absolute shadow-xl h-6 right-7  -top-3 rounded-md bg-teal-100 bg-opacity-40  px-1 text-sm text-teal-500 font-extralight" data-id="${i}">ℹ️</button>
              <button class="btn-audio border border-teal-300 absolute shadow-xl h-6  -right-2 -top-3 rounded-md bg-teal-100 bg-opacity-40  px-2 text-sm text-teal-500 font-extralight" data-alafasy="${i}">♬°</button>
-             
         </div>`
     })
     document.getElementById('app').innerHTML = app
@@ -123,7 +123,7 @@ class Arabiyah extends Alquran{
     })
   }
   getPopUp() {
-    const divApp = document.querySelectorAll('.app')
+    const divApp = document.querySelectorAll('.btn-details')
     const juz = this.juz
     const page = this.page
     const inSurah = this.inSurah
