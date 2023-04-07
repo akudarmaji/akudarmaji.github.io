@@ -5,6 +5,7 @@ const WebApp = {
 }
 
 const el = {
+  container:document.querySelector(".container"),
   modal: document.getElementById("box-model"),
   textModal: document.getElementById("text-modal"),
   close: document.getElementById("closes"),
@@ -158,8 +159,6 @@ arabiyah.init().then(() => {
   arabiyah.getPopUp()
 })
 
-
-
 window.onscroll = function() {
   let scrollTop = document.documentElement.scrollTop;
   let scrollHeight =
@@ -174,8 +173,9 @@ window.onscroll = function() {
   }
 }
 
+
 window.onload = () => {
-  Telegram.WebApp.ready();
-  Telegram.WebApp.expand();
+  WebApp.ready
+  WebApp.expand
   document.documentElement.scrollTo(el.smooth);
 };
