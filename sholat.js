@@ -36,7 +36,7 @@ document.getElementById("simple-search").onkeyup = function () {
   for (i in kode) {
     if (inputKeyword == i) {
       fetch(
-        `https://api.myquran.com/v1/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`
+        `https://api.myquran.com/v2/sholat/jadwal/${kode[i]}/${tahun}/${bulan}/${tanggal}`
       )
         .then((response) => response.json())
         .then(({ data }) => {
