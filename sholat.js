@@ -8,7 +8,7 @@ window.onload = () => {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
   fetch(
-    `https://api.myquran.com/v1/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`
+    `https://api.myquran.com/v2/sholat/jadwal/1607/${tahun}/${bulan}/${tanggal}`
   )
     .then((response) => response.json())
     .then(({ data }) => {
