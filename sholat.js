@@ -73,7 +73,7 @@ let template = function (data) {
       </ul>
     </div>
     <div class="rounded-lg ml-4 h-7 w-auto bg-sky-100 flex justify-center">
-      <ul class="drop-shadow-lg p-1 pb-2">L: ${data.koordinat.lintang} 
+      // <ul class="drop-shadow-lg p-1 pb-2">L: ${data.koordinat.lintang} //
         <li class="">${data.jadwal.imsak}</li>
         <li class="text-slate-400">${data.jadwal.subuh}</li>
         <li class="">${data.jadwal.terbit}</li>
