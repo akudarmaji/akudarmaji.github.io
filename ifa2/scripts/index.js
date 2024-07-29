@@ -3,33 +3,6 @@ const count = document.getElementById('count');
 const head = document.getElementById('head');
 const giftbox = document.getElementById('merrywrap');
 const canvasC = document.getElementById('c');
-const panels = document.querySelectorAll(".panel");
-
-panels.forEach((panel) => {
-  panel.addEventListener("click", () => {
-    removeActiveClasses();
-    panel.classList.add("active");
-  });
-});
-
-const removeActiveClasses = () => {
-  panels.forEach((panel) => {
-    panel.classList.remove("active");
-  });
-};
-
-panels.forEach((panel) => {
-  panel.addEventListener("click", () => {
-    removeActiveClasses();
-    panel.classList.add("active");
-  });
-});
-
-const removeActiveClasses = () => {
-  panels.forEach((panel) => {
-    panel.classList.remove("active");
-  });
-};
 
 const config = {
   birthdate: 'Aug 8, 2023',
