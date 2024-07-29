@@ -35,7 +35,6 @@ li span {
 }
 .merrywrap {
   position: absolute;
-  display: flex;
   right: 40px;
   left: 40px;
   bottom: 80px;
