@@ -1,26 +1,28 @@
-var c = document.getElementById("c");
-var ctx = c.getContext("2d");
+(function () {
+  const second = 1000,
+        minute = second * 60,
+        hour = minute * 60,
+        day = hour * 24;
 ​
-var bc = document.createElement("canvas");
-var bCtx = bc.getContext("2d");
+  //I'm adding this section so I don't have to keep updating this pen every year :-)
+  //remove this if you don't need it
+  let today = new Date(),
+      dd = String(today.getDate()).padStart(2, "0"),
+      mm = String(today.getMonth() + 1).padStart(2, "0"),
+      yyyy = today.getFullYear(),
+      nextYear = yyyy + 1,
+      dayMonth = "09/30/",
+      birthday = dayMonth + yyyy;
+  
+  today = mm + "/" + dd + "/" + yyyy;
+  if (today > birthday) {
+    birthday = dayMonth + nextYear;
+  }
+  //end
+  
+  const countDown = new Date(birthday).getTime(),
+      x = setInterval(function() {    
 ​
-var cw = c.width = bc.width = window.innerWidth,
-  cx = cw / 2;
-var ch = c.height = bc.height = window.innerHeight + 100,
-  cy = ch;
+        const now = new Date().getTime(),
+              distance = countDown - now;
 ​
-var frames = 0;
-var requestId = null;
-var rad = (Math.PI / 180);
-var kappa = 0.5522847498;
-​
-var x, y;
-bCtx.strokeStyle = "#abcdef";
-bCtx.lineWidth = 1;
-​
-var balloons = [];
-​
-function Balloon() {
-  this.r = randomIntFromInterval(20, 70);
-  this.R = 1.4 * this.r;
-  this.x = randomIntFromInterval(this.r, cw - this.r);
