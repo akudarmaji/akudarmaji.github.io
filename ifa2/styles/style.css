@@ -18,6 +18,10 @@ body {
   font-weight: lighter;
   text-align: center;
 }
+.cards {
+  display: flex;
+  width: 90vw;
+}
 .panel {
   background-size: auto 100%;
   background-position: center;
