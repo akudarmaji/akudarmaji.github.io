@@ -173,6 +173,7 @@ body {
 .container {
   display: flex;
   width: 90vw;
+   z-index: -10;
 }
 
 .panel {
