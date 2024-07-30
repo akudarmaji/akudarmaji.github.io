@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing Script&family=Source+Code+Pro');
 
 canvas{
-  z-index: 10
+  z-index:10;
   display:block
 }
 
@@ -36,6 +36,7 @@ canvas{
 }
 
 body {
+  position: absolute;
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
