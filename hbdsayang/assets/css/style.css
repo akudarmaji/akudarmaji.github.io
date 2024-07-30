@@ -36,7 +36,6 @@ div .dot {
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
-  z-index:10;
   top: 20%;
   right: 20%;
 }
