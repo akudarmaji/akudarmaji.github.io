@@ -1,5 +1,14 @@
 // Siwper JS
 
+const buttons = document.querySelector(".button");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    audio.play();
+  });
+});
+
+
 let swiperCard = new Swiper(".card-content", {
   loop: true,
   spaceBetween: 32,
