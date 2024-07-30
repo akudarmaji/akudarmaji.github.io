@@ -1,6 +1,6 @@
 // Siwper JS
 
-const buttons = document.querySelector(".button");
+const buttons = document.querySelector(".card-button");
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
