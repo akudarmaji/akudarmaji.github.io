@@ -10,8 +10,8 @@
  * Released on: January 30, 2023
  */
 
-const audio = new Audio("./audio/ultah.mp3");
-const buttons = document.querySelector("#play");
+const audio = new Audio("https://www.fesliyanstudios.com/play-mp3/387");
+const buttons = document.querySelectorAll("button");
 
 buttons.forEach(button => {
   button.addEventListener("click", () => {
