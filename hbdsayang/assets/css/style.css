@@ -174,7 +174,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
 }
 .card-container {
   padding-block: 5rem;
