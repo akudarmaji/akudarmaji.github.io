@@ -68,8 +68,8 @@ img {
 .card-image {
   position: relative;
   background-color: var(--first-color-light);
-  padding-top: 1rem;
-  margin-bottom: -0.5rem;
+  padding-top: 1.5rem;
+  margin-bottom: -0.75rem;
 }
 
 .card-data {
@@ -83,7 +83,7 @@ img {
 
 /* Card Img */
 .card-img {
-  width: 240px;
+  width: 400px;
   margin: 0 auto;
   position: relative;
   z-index: 5;
