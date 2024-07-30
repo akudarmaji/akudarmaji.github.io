@@ -5,8 +5,8 @@
 :root {
   /* Colors */
   --first-color: hsl(156, 86%, 66%);
-  --first-color-light: hsl(38, 100%, 78%);
-  --first-color-alt: hsl(32, 75%, 50%);
+  --first-color-light: hsl(243, 16%, 23%);
+  --first-color-alt: hsl(243, 10%, 20%);
   --second-color: hsl(195, 75%, 52%);
   --dark-color: hsl(212, 40%, 12%);
   --white-color: hsl(212, 4%, 95%);
