@@ -10,6 +10,17 @@
  * Released on: January 30, 2023
  */
 
+const audio = new Audio("./audio/ultah.mp3");
+const buttons = document.querySelector("#play");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    audio.play();
+  });
+});
+
+
+
 !(function (e, t) {
   "object" == typeof exports && "undefined" != typeof module
     ? (module.exports = t())
