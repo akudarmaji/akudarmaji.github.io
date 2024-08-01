@@ -13,7 +13,7 @@
 const audio = new Audio("../audio/ultah.mp3");
 window.addEventListener("load", event => {
   audio.play();
-  alert("test");
+  alert("hello");
 });
 
 
