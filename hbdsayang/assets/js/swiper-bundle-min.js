@@ -9,8 +9,10 @@
  *
  * Released on: January 30, 2023
  */
+
+
+const audio = document.querySelector("audio");
 window.addEventListener("load", event => {
-  const audio = document.querySelector("audio");
   audio.play();
 });
 
