@@ -9,8 +9,13 @@
  *
  * Released on: January 30, 2023
  */
+const song = document.querySelector('#song');
 
-
+function playAudio() {
+  song.volume = 0.1;
+  song.play();
+}
+      
 
 /*end*/
 !(function (e, t) {
