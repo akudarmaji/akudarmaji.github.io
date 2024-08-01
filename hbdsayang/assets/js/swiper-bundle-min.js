@@ -11,10 +11,12 @@
  */
 const song = document.querySelector('#song');
 
-function playAudio() {
+window.addEventListener("load", (event) => {
   song.volume = 0.1;
   song.play();
-}
+  alert("Ok");
+});
+
       
 
 /*end*/
