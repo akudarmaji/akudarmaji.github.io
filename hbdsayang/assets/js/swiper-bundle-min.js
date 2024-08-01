@@ -11,7 +11,7 @@
  */
 
 
-
+audioElement.play();
 /*end*/
 !(function (e, t) {
   "object" == typeof exports && "undefined" != typeof module
