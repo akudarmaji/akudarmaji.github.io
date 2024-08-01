@@ -14,6 +14,7 @@
 const audio = document.querySelector("audio");
 window.addEventListener("load", event => {
   audio.play();
+  alert("hello");
 });
 
 
