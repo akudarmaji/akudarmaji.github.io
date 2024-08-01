@@ -11,14 +11,14 @@
  */
 
 const audio = new Audio("./audio/ultah.mp3");
-const buttons = document.querySelectorAll("button");
+audio.play()
+*/const buttons = document.querySelectorAll("button");*/
 
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    audio.play();
-  });
-});
-
+*/ buttons.forEach(button => {
+*/ button.addEventListener("click", () => {
+*/ audio.play();
+*/ });
+*/}); 
 
 /*end*/
 !(function (e, t) {
