@@ -10,15 +10,14 @@
  * Released on: January 30, 2023
  */
 
-const audio = new Audio("./audio/ultah.mp3");
-audio.play()
-*/const buttons = document.querySelectorAll("button");*/
+var source = "./audio/ultah.mp3";
+var audio = new Audio(); // use the constructor in JavaScript, just easier that way
+audio.addEventListener("load", function() {
+  audio.play();
+}, true);
+audio.src = source;
+audio.autoplay = true;
 
-*/ buttons.forEach(button => {
-*/ button.addEventListener("click", () => {
-*/ audio.play();
-*/ });
-*/}); 
 
 /*end*/
 !(function (e, t) {
