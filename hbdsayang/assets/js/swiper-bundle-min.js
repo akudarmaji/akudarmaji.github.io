@@ -10,11 +10,6 @@
  * Released on: January 30, 2023
  */
 
-window.addEventListener("load", event => {
-document.getElementById("myAudio").autoplay;
-alert("hello");
-});
-
 
 
 /*end*/
