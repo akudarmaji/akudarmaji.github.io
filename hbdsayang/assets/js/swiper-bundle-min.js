@@ -11,14 +11,10 @@
  */
 
 function playMusic () {
-  if(confirm('putar musik') == true) {
-    const ultah = document.getElementById('audio');
+  const ultah = document.getElementById('audio');
   ultah.play();
-  } else {
-    playMusic()
-  }
 };
-document.addEventListener("click", playMusic);
+document.addEventListener("onscroll", playMusic);
 
       
 
