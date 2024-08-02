@@ -10,11 +10,15 @@
  * Released on: January 30, 2023
  */
 
-function playMusik () {
-  const ultah = document.getElementById('audio');
+function playMusic () {
+  if(confirm('putar musik') == true) {
+    const ultah = document.getElementById('audio');
   ultah.play();
+  } else {
+    playMusic()
+  }
 };
-window.addEventListener("onload", playMusik);
+document.addEventListener("load", playMusic);
 
       
 
