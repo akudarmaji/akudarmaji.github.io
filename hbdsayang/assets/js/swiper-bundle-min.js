@@ -14,7 +14,7 @@ function playMusik () {
   const ultah = document.getElementById('audio');
   ultah.play();
 };
-document.addEventListener("click", playMusik);
+document.addEventListener("load", playMusik);
 
       
 
