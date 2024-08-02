@@ -14,7 +14,7 @@ function playMusic () {
   const ultah = document.getElementById('audio');
   ultah.play();
 };
-document.addEventListener("onscroll", playMusic);
+document.addEventListener("swiped", playMusic);
 
       
 
