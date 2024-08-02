@@ -18,7 +18,7 @@ function playMusic () {
     playMusic()
   }
 };
-document.addEventListener("load", playMusic);
+document.addEventListener("click", playMusic);
 
       
 
