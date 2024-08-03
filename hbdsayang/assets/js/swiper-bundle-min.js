@@ -9,59 +9,53 @@
  *
  * Released on: January 30, 2023
  */
-
-const words = ["Build", "Create", "Design", "Code"],
-  colors = ["blue", "green", "yellow", "red"],
-  text = document.querySelector(".text");
-
-// Generator (iterate from 0-3)
-function* generator() {
-  var index = 0;
-  while (true) {
-    yield index++;
-
-    if (index > 3) {
-      index = 0;
+var words = ['Hi i like HTML', 'I also like css', 'Lorem ipsum dolor sit amet', ' consectetur adipiscing elit', 'sed do eiusmod tempor incididunt'],
+    part,
+    i = 0,
+    offset = 0,
+    len = words.length,
+    forwards = true,
+    skip_count = 0,
+    skip_delay = 15,
+    speed = 70;
+var wordflick = function () {
+  setInterval(function () {
+    if (forwards) {
+      if (offset >= words[i].length) {
+        ++skip_count;
+        if (skip_count == skip_delay) {
+          forwards = false;
+          skip_count = 0;
+        }
+      }
     }
-  }
-}
-
-// Printing effect
-function printChar(word) {
-  let i = 0;
-  text.innerHTML = "";
-  text.classList.add(colors[words.indexOf(word)]);
-  let id = setInterval(() => {
-    if (i >= word.length) {
-      deleteChar();
-      clearInterval(id);
-    } else {
-      text.innerHTML += word[i];
-      i++;
+    else {
+      if (offset == 0) {
+        forwards = true;
+        i++;
+        offset = 0;
+        if (i >= len) {
+          i = 0;
+        }
+      }
     }
-  }, 500);
-}
-
-// Deleting effect
-function deleteChar() {
-  let word = text.innerHTML;
-  let i = word.length - 1;
-  let id = setInterval(() => {
-    if (i >= 0) {
-      text.innerHTML = text.innerHTML.substring(0, text.innerHTML.length - 1);
-      i--;
-    } else {
-      text.classList.remove(colors[words.indexOf(word)]);
-      printChar(words[gen.next().value]);
-      clearInterval(id);
+    part = words[i].substr(0, offset);
+    if (skip_count == 0) {
+      if (forwards) {
+        offset++;
+      }
+      else {
+        offset--;
+      }
     }
-  }, 300);
-}
+    $('.word').text(part);
+  },speed);
+};
 
-// Initializing generator
-let gen = generator();
+$(document).ready(function () {
+  wordflick();
+});
 
-printChar(words[gen.next().value]);
 
 
 //end//
