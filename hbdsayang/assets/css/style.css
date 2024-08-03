@@ -3,7 +3,7 @@
 .
 
 h1 {
-  position: absolute;
+  position: sticky;
   font-size: 68px;
   color: #747474;
 
