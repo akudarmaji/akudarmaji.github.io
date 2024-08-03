@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600&display=swap");
 
 
-.teksanimasi {
+div.teksanimasi {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
