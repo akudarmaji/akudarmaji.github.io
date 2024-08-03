@@ -1,6 +1,9 @@
 /* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600&display=swap");
+.
+
 h1 {
+  position: absolute;
   font-size: 68px;
   color: #747474;
 
