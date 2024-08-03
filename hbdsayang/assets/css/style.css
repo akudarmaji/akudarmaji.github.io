@@ -11,6 +11,7 @@
 
 
 .word {
+position: sticky;
   margin: auto;
   color: white;
   font: 700 normal 2.5em 'tahoma';
