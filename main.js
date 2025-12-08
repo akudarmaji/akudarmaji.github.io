@@ -16,7 +16,8 @@ const el = {
 
 const Datas = {
   id: new URLSearchParams(window.location.search).get("id"),
-  url: "https://quran-api-id.vercel.app/surahs/",
+  // url: "https://quran-api-id.vercel.app/surahs/",
+  url: "https://alquran-api.pages.dev/api/quran/surah/",
   url2: "https://al-quran-8d642.firebaseio.com/surat/"
 };
 
@@ -179,3 +180,4 @@ window.onload = () => {
   WebApp.expand
   document.documentElement.scrollTo(el.smooth);
 };
+
