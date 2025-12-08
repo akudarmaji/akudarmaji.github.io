@@ -72,7 +72,7 @@
     const ayat = data.verses
     console.log(data)
     for (let i = 0; i < ayat.length; i++) {
-  const listItem = document.createElement('h2');
+  const listItem = document.createElement('h1');
   listItem.textContent = data.verses[i].text_indopak;
   document.getElementById('ayat').appendChild(listItem);
         listItem.append(`${listItem.textContent}`)
@@ -85,3 +85,4 @@
 </script>
 
 </html> 
+
