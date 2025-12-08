@@ -1,4 +1,68 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>Alquran</title>
+</head>
+
+<body>
+
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status" id="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <h2>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h2>
+  <section id="section">
+    <ul id='ayat'></ul>
+  </section>
+</body>
+
+<script>
+
+    const id=  new URLSearchParams(window.location.search).get("id");
+  const API_URL = `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=`
+
+  async function fetchPosts() {
+    const response = await fetch(`${API_URL}${id}`)
+    let data = await response.json()
+
+    if (response) {
+      hideloader();
+    }
+
+    show(data)
+
+  }
+
+  function hideloader() {
+    document.getElementById('loading').style.display = 'none';
+  }
+
+
+  function show(data) {
+    const ayat = data.verses
+    console.log(data)
+    for (let i = 0; i < ayat.length; i++) {
+  const listItem = document.createElement('h3');
+  listItem.textContent = data.verses[i].text_indopak;
+  document.querySelector('ul').appendChild(listItem);
+}
+
+  }
+
+    fetchPosts()
+</script>
+
+</html>
+
+
+alquran lama
+
+<!-- <!DOCTYPE html >
 <html lang="en" class="scroll-smooth>
   <head>
     <meta charset="UTF-8" />
@@ -75,3 +139,4 @@ class="fixed z-40 bottom-8 right-6 border-0 w-12 h-12 rounded-full border-2 bord
   <script src="main2.js"></script>
 </html>
 
+ -->
