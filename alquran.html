@@ -21,7 +21,7 @@
   font-weight: 200;
   font-style: normal;
         }
-      div {
+      span {
          color: red;
       }
       h1 {
@@ -74,7 +74,7 @@
     const ayat = data.verses
     console.log(data)
     for (let i = 0; i < ayat.length; i++) {
-  const listItem = document.createElement('h1');
+  const listItem = document.createElement('span');
   listItem.textContent = data.verses[i].text_indopak;
   document.getElementById('ayat').append(listItem.textContent);
       //  listItem.append(`${listItem.textContent}`)//
@@ -87,6 +87,7 @@
 </script>
 
 </html> 
+
 
 
 
