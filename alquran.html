@@ -20,15 +20,30 @@
   font-weight: 400;
   font-style: normal;
         }
+        nav {
+          padding: 10px;
+          position: sticky;
+          top: 0;
+          font-family: "Lucida Console", "Courier New", monospace;
+/* From https://css.glass */
+background: rgba(41, 224, 151, 0.12);
+border-radius: 8px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.5px);
+-webkit-backdrop-filter: blur(6.5px);
+border: 1px solid rgba(41, 224, 151, 0.08);
+
+        }
       #loading {
-        position: fixed;
+        position: -webkit-sticky;
+        text-align: justify;
       }
       ul {
-        margin:5px;
-        padding:10px;
+                 margin: 10px;
+         padding: 10apx;
       }
       li {
-         direction: rtl;
+            direction:rtl;
         list-style-type: none;
          color: #009094;
         font-size: 250%;
@@ -50,6 +65,8 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
+  <nav id="nav" onclick="hideTerjemah()">
+    DENGAN MENYEBUT NAMA ALLAH YANG MAHA PENGASIH LAGI MAHA PENYAYANG  </nav>
   <section id="section">
     <ul id='ayat'></ul>
   </section>
@@ -98,25 +115,22 @@ for (let i = 0; i < tangkapSemuaList.length; i++) {
     const response = await fetch(`${API_URL_TERJEMAH}`)
     let data = await response.json()
     const data_terjemahan = data.verses[i].translation
-    const terjemahan = document.getElementById('loading').replaceChildren(data_terjemahan)
+
+    document.getElementById('nav').style.display = 'block';
+    document.getElementById('nav').innerText = data_terjemahan
     
-    // alert(terjemahan)
   };
 }
+  }
+
+  const hideTerjemah = () =>{
+    document.getElementById('nav').style.display = 'none';
   }
 
     fetchPosts()
 </script>
 
 </html> 
-
-
-
-
-
-
-
-
 
 
 
