@@ -43,7 +43,7 @@
     </div>
   </div>
   <section id="section">
-    <div id='ayat'></div>
+    <span id='ayat'></span>
   </section>
 </body>
 
@@ -74,7 +74,7 @@
     const ayat = data.verses
     console.log(data)
     for (let i = 0; i < ayat.length; i++) {
-  const listItem = document.createElement('span');
+  const listItem = document.createElement('li');
   listItem.textContent = data.verses[i].text_indopak;
   document.getElementById('ayat').append(listItem.textContent);
       //  listItem.append(`${listItem.textContent}`)//
@@ -87,6 +87,7 @@
 </script>
 
 </html> 
+
 
 
 
