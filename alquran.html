@@ -21,19 +21,18 @@
   font-style: normal;
         }
       #loading {
+        position: -webkit-sticky;
         text-align: justify;
-        margin:0 ;
-        padding:0 ;
       }
       ul {
                  margin: 10px;
-         padding: 10px;
+         padding: 10apx;
       }
       li {
             direction:rtl;
         list-style-type: none;
          color: #009094;
-        font-size: 300%;
+        font-size: 250%;
         border-bottom: 2px solid #CCC;
       }
       h1 {
@@ -81,22 +80,36 @@
 
 
   function show(data) {
-    const ayat = data.verses
-    console.log(ayat)
+    const ayat = data.verses;
     for (let i = 0; i < ayat.length; i++) {
   const listItem = document.createElement('li');
+  listItem.id = i;
   listItem.textContent = data.verses[i].text_indopak;
-  console.log(listItem.textContent)
-  document.getElementById('ayat').appendChild(listItem);        
-}
+  document.getElementById('ayat').appendChild(listItem); 
+    } 
 
+const API_URL_TERJEMAH = `https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/chapters/id/${id}.json`;
+
+    let tangkapSemuaList = document.getElementsByTagName('li');
+for (let i = 0; i < tangkapSemuaList.length; i++) {
+  var list = tangkapSemuaList[i];
+  list.onclick =async function() {
+    const id = event.target.id
+    console.log(id)
+    const response = await fetch(`${API_URL_TERJEMAH}`)
+    let data = await response.json()
+    const data_terjemahan = data.verses[i].translation
+    const terjemahan = document.getElementById('loading').replaceChildren(data_terjemahan)
+    
+    // alert(terjemahan)
+  };
+}
   }
 
     fetchPosts()
 </script>
 
 </html> 
-
 
 
 
