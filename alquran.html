@@ -10,28 +10,33 @@
   <title>Alquran</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lateef:wght@200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
        <style>
         body 
         {
-            direction:rtl;
            font-family: "Lateef", serif;
-  font-weight: 200;
+  font-weight: 400;
   font-style: normal;
         }
-      span {
+      #loading {
+        text-align: justify;
+      }
+      ul {
+                 margin: 15px;
+         padding: 15px;
+      }
+      li {
+            direction:rtl;
+        list-style-type: none;
          color: #009094;
         font-size: 200%;
         border-bottom: 2px solid #CCC;
-        padding-right: 5px;
-    padding-left: 5px;
       }
       h1 {
+        text-align: center;
     color: #4d918f;
-        padding-right: 5px;
-    padding-left: 5px;
 }
    </style>
 
@@ -46,7 +51,7 @@
     </div>
   </div>
   <section id="section">
-    <span id='ayat'></span>
+    <ul id='ayat'></ul>
   </section>
 </body>
 
@@ -75,13 +80,12 @@
 
   function show(data) {
     const ayat = data.verses
-    console.log(data)
+    console.log(ayat)
     for (let i = 0; i < ayat.length; i++) {
-  const listItem = document.createElement('span');
+  const listItem = document.createElement('li');
   listItem.textContent = data.verses[i].text_indopak;
-  document.getElementById('ayat').append(listItem.textContent);
-      //  listItem.append(`${listItem.textContent}`)//
-        
+  console.log(listItem.textContent)
+  document.getElementById('ayat').appendChild(listItem);        
 }
 
   }
@@ -90,6 +94,7 @@
 </script>
 
 </html> 
+
 
 
 
