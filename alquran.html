@@ -62,6 +62,8 @@
   <nav id="nav" onclick="hideTerjemah()">
     DENGAN MENYEBUT NAMA ALLAH YANG MAHA PENGASIH LAGI MAHA PENYAYANG  </nav>
   <section id="section">
+    <audio id="myAudio" src="" preload="auto">
+</audio>
     <ul id='ayat'>
     </ul>
   </section>
@@ -95,7 +97,8 @@
   const listItem = document.createElement('li');
   listItem.id = i;
   listItem.textContent =` ${data.ayat[i].teksArab}`;
-  document.getElementById('ayat').appendChild(listItem); 
+  document.getElementById('ayat').appendChild(listItem);
+
     } 
 
 
@@ -106,23 +109,29 @@
     let tangkapSemuaList = document.getElementsByTagName('li');
 for (let i = 0; i < tangkapSemuaList.length; i++) {
   var list = tangkapSemuaList[i];
+
+
+  let audio;
   list.addEventListener("dblclick", (event) => {
-  const audio = Object.values(data.ayat[i].audio)[0]
-  // console.log(audio)
+     let apiAudio = Object.values(data.ayat[i].audio)[0] 
+     const audio = new Audio(apiAudio);
+     audio.play()
 
   })
+
+  
+
 
 
     list.onclick = function() {
     const id = event.target.id
-      console.log(data.ayat[i].teksIndonesia)
     const nav = document.getElementById('nav');
     nav.style.display = 'block';
     nav.innerText = data.ayat[i].teksIndonesia;
     document.getElementById(i).style.color = 'red';
     setTimeout(() => {
     document.getElementById(i).style.color = '#4d918f';
-    }, 1000);
+    }, 800);
 
   };
 }
@@ -136,7 +145,6 @@ for (let i = 0; i < tangkapSemuaList.length; i++) {
 </script>
 
 </html> 
-
 
 
 
