@@ -10,6 +10,7 @@
       hideloader();
     }
     show(data)
+    functionDC(data)
   }
 
   function hideloader() {
@@ -33,8 +34,6 @@
   const ul = document.getElementById('ayat')
   ul.appendChild(teksContentLatin)
   ul.appendChild(listItem);
-  // functionDC (teksLatin) 
-
     } 
 
 
@@ -46,7 +45,6 @@
 for (let i = 0; i < tangkapSemuaList.length; i++) {
   var list = tangkapSemuaList[i];
       list.onclick = function() {
-      const id = event.target.id
     const nav = document.getElementById('nav');
     nav.style.display = 'block';
     nav.innerText = data.ayat[i].teksIndonesia;
@@ -56,12 +54,15 @@ for (let i = 0; i < tangkapSemuaList.length; i++) {
     }, 800);
 
   };
+  list.ondblclick = function() {
+    const audio = Object.values(data.ayat[i].audio)
+    play = new Audio(audio[0]).play()
+    
+  }
 }
   }
   function functionDC () {
-    const id = event.target.id
-    console.log(id)
-
+    
   }
 
   const hideTerjemah = () =>{
