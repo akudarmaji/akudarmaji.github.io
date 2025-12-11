@@ -1,0 +1,41 @@
+body {
+          font-family: "Lateef", serif;
+          font-weight: 400;
+          font-style: normal;
+        }
+        nav {
+          padding: 10px;
+          position: sticky;
+          top: 0;
+          font-family: "Lucida Console", "Courier New", monospace;
+/* From https://css.glass */
+          background: rgba(41, 224, 151, 0.12);
+          border-radius: 8px;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(6.5px);
+          -webkit-backdrop-filter: blur(6.5px);
+          border: 1px solid rgba(41, 224, 151, 0.08);
+        }
+      #loading {
+        position: -webkit-sticky;
+        text-align: justify;
+      }
+      ul {
+        margin: 10px;
+        padding: 10px;
+      }
+      li {
+          direction:rtl;
+          list-style-type: none;
+          color: #009094;
+          font-size: 250%;
+          border-bottom: 2px solid #CCC;
+      }
+      h1 {
+        text-align: center;
+        color: #4d918f;
+}
+section div {
+  display: block;
+  font-size: small;
+}
