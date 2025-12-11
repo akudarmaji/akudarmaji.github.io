@@ -1,6 +1,6 @@
 <html lang="en" class="scroll-smooth>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <head>
@@ -9,48 +9,12 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>Alquran</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400&display=swap" rel="stylesheet">
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
        <style>
-        body {
-          font-family: "Lateef", serif;
-          font-weight: 400;
-          font-style: normal;
-        }
-        nav {
-          padding: 10px;
-          position: sticky;
-          top: 0;
-          font-family: "Lucida Console", "Courier New", monospace;
-/* From https://css.glass */
-          background: rgba(41, 224, 151, 0.12);
-          border-radius: 8px;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-          backdrop-filter: blur(6.5px);
-          -webkit-backdrop-filter: blur(6.5px);
-          border: 1px solid rgba(41, 224, 151, 0.08);
-        }
-      #loading {
-        position: -webkit-sticky;
-        text-align: justify;
-      }
-      ul {
-        margin: 10px;
-        padding: 10px;
-      }
-      li {
-          direction:rtl;
-          list-style-type: none;
-          color: #009094;
-          font-size: 250%;
-          border-bottom: 2px solid #CCC;
-      }
-      h1 {
-        text-align: center;
-        color: #4d918f;
-}
    </style>
 </head>
 <body>
@@ -69,80 +33,7 @@
   </section>
 </body>
 
-<script>
-
-    const id=  new URLSearchParams(window.location.search).get("id");
-    const API_URL = 'https://equran.id/api/v2/surat/'
-    // baseURL cadangan
-    // const API_URL = `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=` 
-
-  async function fetchPosts() {
-    const response = await fetch(`${API_URL}${id}`)
-    let data = await response.json()
-    if (response) {
-      hideloader();
-    }
-    show(data)
-  }
-
-  function hideloader() {
-    document.getElementById('loading').innerText = 'none';
-    document.getElementById('loading').innerHTML = `<h1>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>`
-}
-
-
-  function show({data}) {
-    const ayat = data.ayat;
-    for (let i = 0; i < ayat.length; i++) {
-  const listItem = document.createElement('li');
-  listItem.id = i;
-  listItem.textContent =` ${data.ayat[i].teksArab}`;
-  document.getElementById('ayat').appendChild(listItem);
-
-    } 
-
-
-
-// const API_URL_TERJEMAH = `https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/chapters/id/${id}.json`;
-
-
-    let tangkapSemuaList = document.getElementsByTagName('li');
-for (let i = 0; i < tangkapSemuaList.length; i++) {
-  var list = tangkapSemuaList[i];
-
-
-  let audio;
-  list.addEventListener("dblclick", (event) => {
-     let apiAudio = Object.values(data.ayat[i].audio)[0] 
-     const audio = new Audio(apiAudio);
-     audio.play()
-
-  })
-
-  
-
-
-
-    list.onclick = function() {
-    const id = event.target.id
-    const nav = document.getElementById('nav');
-    nav.style.display = 'block';
-    nav.innerText = data.ayat[i].teksIndonesia;
-    document.getElementById(i).style.color = 'red';
-    setTimeout(() => {
-    document.getElementById(i).style.color = '#4d918f';
-    }, 800);
-
-  };
-}
-  }
-
-  const hideTerjemah = () =>{
-    document.getElementById('nav').style.display = 'none';
-  }
-
-    fetchPosts()
-</script>
+<script src="alquran.js"></script>
 
 </html> 
 
