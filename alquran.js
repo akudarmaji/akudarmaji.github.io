@@ -6,16 +6,15 @@
   async function fetchPosts() {
     const response = await fetch(`${API_URL}${id}`)
     let data = await response.json()
-    if (response) {
+    if (response.ok) {
       hideloader();
     }
+    
     show(data)
-    functionDC(data)
   }
 
   function hideloader() {
-    document.getElementById('loading').innerText = 'none';
-    document.getElementById('loading').innerHTML = `<h1>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>`
+      document.getElementById('loading').innerHTML = `<h1>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>`
 }
 
 
@@ -26,7 +25,8 @@
       const teksContentLatin = document.createElement('div');
            teksContentLatin.className = i;
       const teksLatin = data.ayat[i].teksLatin;
-      teksContentLatin.textContent = teksLatin
+      const noAyat = ayat[i].nomorAyat;
+      teksContentLatin.textContent = `${noAyat}. ${teksLatin}`
       listItem.id = i;
       listItem.textContent =` ${data.ayat[i].teksArab}`;
       listItem.setAttribute('ondblclick', 'functionDC()')
@@ -55,9 +55,8 @@ for (let i = 0; i < tangkapSemuaList.length; i++) {
 
   };
   list.ondblclick = function() {
-    const audio = Object.values(data.ayat[i].audio)
-    play = new Audio(audio[0]).play()
-    
+    const audioURL = Object.values(data.ayat[i].audio)
+    const audio = new Audio(audioURL[0]).play()
   }
 }
   }
