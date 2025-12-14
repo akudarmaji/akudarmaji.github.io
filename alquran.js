@@ -7,14 +7,16 @@
     const response = await fetch(`${API_URL}${id}`)
     let data = await response.json()
     if (response.ok) {
-      hideloader();
+        hideloader(data);
     }
     
-    show(data)
   }
-
-  function hideloader() {
+  
+  function hideloader(data) {
+    setTimeout(() => {
       document.getElementById('loading').innerHTML = `<h1>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>`
+      show(data);
+    }, 200);
 }
 
 
@@ -67,5 +69,33 @@ for (let i = 0; i < tangkapSemuaList.length; i++) {
   const hideTerjemah = () =>{
     document.getElementById('nav').style.display = 'none';
   }
+
+  window.onscroll = function() {scrollFunction()
+    percentageVal = document.querySelector("#percentage-value")
+    bodyHeight = document.body.offsetHeight
+    const heightOfWindow = window.innerHeight
+    contentScrolled = window.pageYOffset;
+    percentage = document.querySelector("[data-scrollPercentage] .percentage")
+
+      const total = bodyHeight - heightOfWindow,
+        got = contentScrolled,
+        percent = parseInt((got/total) * 100)
+      percentageVal.textContent = `${percent}%`;
+  
+  };
+
+function scrollFunction() {
+  const persen = document.getElementById("percentage-value");
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    persen.style.display= 'block';
+  } else {
+    persen.style.display = 'none';
+  }
+}
+
+function scrollToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
     fetchPosts()

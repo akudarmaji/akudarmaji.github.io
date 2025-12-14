@@ -20,7 +20,9 @@
 <body>
   <div class="d-flex justify-content-center">
     <div class="spinner-border" role="status" id="loading">
-      <div class="spinner"></div>
+      <div class="spinner">
+      </div>
+      <img id="img" src = "img/img.svg" alt="My Happy SVG"/>
     </div>
   </div>
   <nav id="nav" onclick="hideTerjemah()">
@@ -29,6 +31,13 @@
     <ul id='ayat'>
     </ul>
   </section>
+  <div id="percentage-value" onclick="scrollToTop()">
+  </div>
+
+  <div id="scroll-percent" data-scrollPercentage>
+    <div class="percentage">&nbsp;</div>
+  </div>
+	
 </body>
 
 <script src="alquran.js"></script>
