@@ -6,20 +6,24 @@ body {
         }
 
       #percentage-value {
-        display: none;
         position: fixed;
-        top: 93%;
-        left: 90%;
-        transform: translateX(-50%);
+        bottom: 20px;
+        right: 10px;
+        transition: transform 330ms ease-in-out;
         height: 40px;
-        width: 40px;
-        color: #FB3C3F;
-        background-color: white;
+        width: 200px;
+        color:#33A6A6;
+text-shadow: 2px 2px 4px  rgb(140,245,198,7);
         text-align: center;
         line-height: 40px;
-        border-radius: 50%;
-        box-shadow: 1px 1px 8px 2px #FB3C3F, -1px -1px 8px 2px #FB3C3F; 
-        font-size: 1em;
+        border-radius: 18px;
+background: linear-gradient(225deg, #cacaca, #f0f0f0);
+box-shadow: -18px 18px 29px #808080,
+18px -18px 29px #ffffff;
+border: 1px solid rgba(41, 224, 151, 0.08);
+        font-size: 2em;
+        padding: 20px;
+        animation-duration: 1s;
         z-index: 3;
       }
 
@@ -31,12 +35,10 @@ body {
           opacity: 1;
         }
 
-        .img {
+        img {
+          top: 20%;
           position: fixed;
           display: block;
-          left: 15%;
-          margin-left: auto;
-          margin-right: auto;
           z-index: 2;
           
         }
@@ -48,27 +50,24 @@ body {
           top: 0;
           font-family: "Lucida Console", "Courier New", monospace;
 /* From https://css.glass */
-          background: rgba(41, 224, 151, 0.12);
-          border-radius: 8px;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          border-radius: 18px;
+background: #e0e0e0;
+box-shadow: 18px 18px 36px #5a5a5a,
+-18px -18px 36px #ffffff;
           backdrop-filter: blur(6.5px);
           -webkit-backdrop-filter: blur(6.5px);
           border: 1px solid rgba(41, 224, 151, 0.08);
         }
-      #loading {
-        display: flex;
-        justify-content: center;    
-        position: -webkit-sticky;
-        text-align: justify;
-      }
       ul {
         margin: 10px;
         padding: 10px;
+        padding-bottom: 17%;
       }
       li {
           direction:rtl;
           list-style-type: none;
-          color: #009094;
+              color:#33A6A6;
+text-shadow: 2px 2px 4px  rgb(140,245,198,7);
           font-size: 250%;
           border-bottom: 2px solid #CCC;
       }
@@ -84,7 +83,7 @@ section div {
 .spinner {
       position: absolute;
     top: 50%;
-    left: 50%;
+    left: 45%;
     width: 40px;
     height: 40px;
     border: 5px solid #f3f3f3;
@@ -92,6 +91,28 @@ section div {
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
+
+.animate-width{
+    animation-name: animate-width;
+   -webkit-animation-name: animate-width;
+    animation-duration: 2s; /** Tốc độ chạy **/
+    animation-delay: 1s; /** Thời gian chạy **/
+    animation-iteration-count: infinite; /** Lặp lại **/
+    animation-direction: alternate; /** Quay lại **/
+}
+
+@keyframes animate-width {
+    from { width: 200px; }
+    to { width: 40px; }
+}
+
+/* Copy this code after the above code */
+@keyframes animate-open {
+  from { width: 40px; }
+    to { width: 200px; }
+}
+
+
 
 @keyframes spin {
     0% {
