@@ -1,4 +1,5 @@
-  const id=  new URLSearchParams(window.location.search).get("id");
+  const id1=  new URLSearchParams(window.location.search).get("id");
+  const id ="80";
     const API_URL = 'https://equran.id/api/v2/surat/'
     // baseURL cadangan
     // const API_URL = `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=` 
@@ -13,11 +14,9 @@
   }
   
   function hideloader(data) {
-    setTimeout(() => {
-      document.getElementById('loading').innerHTML = `<h1>بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</h1>`
+    document.getElementById('loading').style.display = 'none'
       show(data);
-    }, 200);
-}
+    }
 
 
   function show({data}) {
@@ -71,25 +70,33 @@ for (let i = 0; i < tangkapSemuaList.length; i++) {
   }
 
   window.onscroll = function() {scrollFunction()
-    percentageVal = document.querySelector("#percentage-value")
-    bodyHeight = document.body.offsetHeight
-    const heightOfWindow = window.innerHeight
-    contentScrolled = window.pageYOffset;
-    percentage = document.querySelector("[data-scrollPercentage] .percentage")
-
-      const total = bodyHeight - heightOfWindow,
-        got = contentScrolled,
-        percent = parseInt((got/total) * 100)
-      percentageVal.textContent = `${percent}%`;
-  
   };
 
 function scrollFunction() {
+  percentageVal = document.querySelector("#percentage-value")
+bodyHeight = document.body.offsetHeight
+const heightOfWindow = window.innerHeight
+contentScrolled = window.pageYOffset;
+
+const total = bodyHeight - heightOfWindow,
+  got = contentScrolled,
+  percent = parseInt((got / total) * 100)
+//percentageVal.textContent = `${percent}%`;
   const persen = document.getElementById("percentage-value");
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    persen.style.display= 'block';
+  if(percent < 99) {
+    percentageVal.textContent = `${percent}%`;
+    persen.style.animationName = 'animate-width';
+    persen.style.width = '40px'
+  } else if (percent >96) {
+   persen.style.animationName = 'animate-open';
+   persen.style.width = '200px';
+   setTimeout(() => {
+     persen.innerText = "صَدَقَ اللهُ اْلعَظِيْمُ"
+   },500)
   } else {
-    persen.style.display = 'none';
+    
+  } {
+    
   }
 }
 
