@@ -9,7 +9,7 @@ body {
         display: none;
         position: fixed;
         top: 93%;
-        left: 93%;
+        left: 90%;
         transform: translateX(-50%);
         height: 40px;
         width: 40px;
@@ -34,6 +34,7 @@ body {
         .img {
           position: fixed;
           display: block;
+          left: 15%;
           margin-left: auto;
           margin-right: auto;
           z-index: 2;
@@ -99,4 +100,5 @@ section div {
     100% {
         transform: rotate(360deg);
     }
+
 }
