@@ -1,5 +1,5 @@
-  const id1=  new URLSearchParams(window.location.search).get("id");
-  const id ="80";
+  const id=  new URLSearchParams(window.location.search).get("id");
+  
     const API_URL = 'https://equran.id/api/v2/surat/'
     // baseURL cadangan
     // const API_URL = `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=` 
@@ -98,5 +98,6 @@ function scrollToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
 
     fetchPosts()
