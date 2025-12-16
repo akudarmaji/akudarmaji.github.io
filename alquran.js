@@ -83,18 +83,12 @@ const total = bodyHeight - heightOfWindow,
   percent = parseInt((got / total) * 100)
 //percentageVal.textContent = `${percent}%`;
   const persen = document.getElementById("percentage-value");
-  if(percent < 99) {
-    percentageVal.textContent = `${percent}%`;
-    persen.style.animationName = 'animate-width';
-    persen.style.width = '40px'
-  } else if (percent >96) {
-   persen.style.animationName = 'animate-open';
-   persen.style.width = '200px';
-   setTimeout(() => {
-     persen.innerText = "صَدَقَ اللهُ اْلعَظِيْمُ"
-   },500)
+  if(percent < 5) {
+persen.style.display = 'none'
+  } else if (percent >99) {
   } else {
-    
+percentageVal.textContent = `${percent}٪`;
+persen.style.display = 'block'
   } {
     
   }
