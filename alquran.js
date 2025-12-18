@@ -1,5 +1,5 @@
-  const id=  new URLSearchParams(window.location.search).get("id");
-  
+  const id1=  new URLSearchParams(window.location.search).get("id");
+  const id ="6";
     const API_URL = 'https://equran.id/api/v2/surat/'
     // baseURL cadangan
     // const API_URL = `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=` 
@@ -21,54 +21,34 @@
 
   function show({data}) {
     const ayat = data.ayat;
+    const nama = document.getElementById('nama');
+    nama.innerText = `${data.namaLatin}|${data.nama}`;
+    
     for (let i = 0; i < ayat.length; i++) {
-      const listItem = document.createElement('li');
-      const teksContentLatin = document.createElement('div');
-           teksContentLatin.className = i;
-      const teksLatin = data.ayat[i].teksLatin;
+      const listArab = document.createElement('li');
+      const listLatin = document.createElement('li');
+      const listTerjemah = document.createElement('li');
+      listArab.setAttribute('class','list-arab');
+    listLatin.setAttribute('class',`list-latin`);
+    listTerjemah.setAttribute('class','list-terjemah');
+    
+    
+      const dataLatin = data.ayat[i].teksLatin;
       const noAyat = ayat[i].nomorAyat;
-      teksContentLatin.textContent = `${noAyat}. ${teksLatin}`
-      listItem.id = i;
-      listItem.textContent =` ${data.ayat[i].teksArab}`;
-      listItem.setAttribute('ondblclick', 'functionDC()')
+      const dataTerjemah = ayat[i].teksIndonesia;
+      
+      listArab.textContent =` ${data.ayat[i].teksArab}`;
+      listLatin.textContent = `${dataLatin}`;
+      listTerjemah.textContent = `${dataTerjemah}`
+      
+      
 
   const ul = document.getElementById('ayat')
-  ul.appendChild(teksContentLatin)
-  ul.appendChild(listItem);
+  ul.appendChild(listLatin);
+  ul.appendChild(listTerjemah);
+  ul.appendChild(listArab);
     } 
-
-
-
-// const API_URL_TERJEMAH = `https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/chapters/id/${id}.json`;
-
-
-    let tangkapSemuaList = document.getElementsByTagName('li');
-for (let i = 0; i < tangkapSemuaList.length; i++) {
-  var list = tangkapSemuaList[i];
-      list.onclick = function() {
-    const nav = document.getElementById('nav');
-    nav.style.display = 'block';
-    nav.innerText = data.ayat[i].teksIndonesia;
-    document.getElementById(i).style.color = 'red';
-    setTimeout(() => {
-    document.getElementById(i).style.color = '#4d918f';
-    }, 800);
-
-  };
-  list.ondblclick = function() {
-    const audioURL = Object.values(data.ayat[i].audio)
-    const audio = new Audio(audioURL[0]).play()
   }
-}
-  }
-  function functionDC () {
-    
-  }
-
-  const hideTerjemah = () =>{
-    document.getElementById('nav').style.display = 'none';
-  }
-
   window.onscroll = function() {scrollFunction()
   };
 
@@ -81,23 +61,48 @@ contentScrolled = window.pageYOffset;
 const total = bodyHeight - heightOfWindow,
   got = contentScrolled,
   percent = parseInt((got / total) * 100)
-//percentageVal.textContent = `${percent}%`;
-  const persen = document.getElementById("percentage-value");
-  if(percent < 5) {
-persen.style.display = 'none'
-  } else if (percent >99) {
-  } else {
-percentageVal.textContent = `${percent}٪`;
-persen.style.display = 'block'
-  } {
-    
-  }
+  const ball = document.getElementById("ball");
+ball.textContent = `${percent}`;
 }
 
+
+const checkbox = document.getElementById("checkbox")
+checkbox.addEventListener("change", () => {
+  document.body.classList.toggle("dark")
+})
+  
+  function showLatin() {
+    const latinCheckbox = document.getElementById('latin')
+    const latin = document.getElementsByClassName('list-latin')
+  if(latinCheckbox.checked){
+    for (let a of latin) {
+      a.style.display = 'block'
+    }
+  } else {
+    for (let a of latin) {
+      a.style.display = 'none'
+    }
+  }
+  } 
+  
+  
+  function showTerjemah() {
+    const terjemahCheckbox = document.getElementById('terjemah');
+    const terjemah = document.getElementsByClassName('list-terjemah')
+    if(terjemahCheckbox.checked) {
+      for (let a of terjemah) {
+        a.style.display = 'block'
+}
+    }else {
+      for (let a of terjemah) {
+        a.style.display = 'none';
+    }
+  }
+ }
+  
 function scrollToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
-
 
     fetchPosts()
