@@ -1,5 +1,4 @@
-  const id1=  new URLSearchParams(window.location.search).get("id");
-  const id ="6";
+  const id=  new URLSearchParams(window.location.search).get("id");
     const API_URL = 'https://equran.id/api/v2/surat/'
     // baseURL cadangan
     // const API_URL = `https://api.quran.com/api/v4/quran/verses/indopak?chapter_number=` 
@@ -32,12 +31,13 @@
     listLatin.setAttribute('class',`list-latin`);
     listTerjemah.setAttribute('class','list-terjemah');
     
+  const noAyat = ayat[i].nomorAyat;
+const number = new Intl.NumberFormat('ar-EG').format(noAyat)
     
       const dataLatin = data.ayat[i].teksLatin;
-      const noAyat = ayat[i].nomorAyat;
       const dataTerjemah = ayat[i].teksIndonesia;
       
-      listArab.textContent =` ${data.ayat[i].teksArab}`;
+      listArab.textContent =` ${data.ayat[i].teksArab} ${number}`;
       listLatin.textContent = `${dataLatin}`;
       listTerjemah.textContent = `${dataTerjemah}`
       
@@ -100,6 +100,8 @@ checkbox.addEventListener("change", () => {
   }
  }
   
+
+
 function scrollToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
