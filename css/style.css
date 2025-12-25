@@ -1,6 +1,6 @@
 body {
-    font-family: "Lateef", serif;
-    font-weight: 400;
+  font-family: "Lateef", serif;
+    font-weight: 200;
     font-style: normal;
         }
         
@@ -9,6 +9,7 @@ body {
         }
         
 #container {
+  color: deepskyblue;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -27,6 +28,7 @@ body {
   min-width: 100px;
   border-radius: 16px;
   background: #e0e0e4;
+  border: 1px deepskyblue solid;
       }
       
 #header2 {
@@ -37,8 +39,9 @@ body {
   width: auto;
   z-index: 1;
   padding: 3px;
-  border-radius: 18px;
+  border-radius: 10px;
   background: #e0e0e4;
+  border: 1px deepskyblue solid;
       }
       
 #header3 {
@@ -49,8 +52,9 @@ body {
   width: auto;
   z-index: 1;
   padding: 3px;
-  border-radius: 18px;
-  background: #e0e0e4;
+  border-radius: 10px;
+background: #e0e0e4;
+border: 1px deepskyblue solid;
   }
 
 #header4 {
@@ -61,8 +65,9 @@ body {
   width: auto;
   z-index: 1;
   padding: 3px;
-  border-radius: 18px;
-  background: #e0e0e4;
+  border-radius: 10px;
+background: #e0e0e4;
+border: 1px deepskyblue solid;
       }
       
 #header5 {
@@ -71,9 +76,36 @@ body {
   align-items: center;
   position: relative;
   padding : 3px;
+  width: 57px;
   z-index: 1;
   border-radius: 16px;
   background: #e0e0e4;
+  border: 1px deepskyblue solid;
+}
+
+.tools-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: none;
+flex-wrap: wrap;
+justify-content: start;
+}
+
+#tool {
+  width: 28px;
+  height: 28px;
+  background: deepskyblue;
+  margin:1px;
+  margin-top: 0;
+  text-align: center;
+  font-size: 20px;
+}
+
+
+.container-arti {
+ position: relative;
+ background: blue;
 }
 
 #bismillah {
@@ -81,6 +113,13 @@ body {
     width:80vw;
     height: 40px;
     }
+#arti {
+  position: absolute;
+  text-align: center;
+  text-align: center;
+  font-size: 10px;
+  top: 60px;
+}
     
 #img {
   top: 20%;
@@ -88,57 +127,69 @@ body {
   display: block;
   z-index: 9999;
    }
-        #jumpToTop {
-          position: fixed;
-          bottom: 20px;
-          right: 20px;
-        }
+   
+#jumpToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    }
         
-        #jump {
-          width: 30px;
-          height: 30px;
-        }
-        nav {
-          z-index: 1;
-          display: none;
-          padding: 10px;
-          position: sticky;
-          top: 0;
-          font-family: "Lucida Console", "Courier New", monospace;
-/* From https://css.glass */
-          border-radius: 18px;
-background: #e0e0e0;
-box-shadow: 18px 18px 36px #5a5a5a,
--18px -18px 36px #ffffff;
-          backdrop-filter: blur(6.5px);
-          -webkit-backdrop-filter: blur(6.5px);
-          border: 1px solid rgba(41, 224, 151, 0.08);
+#jump {
+  width: 30px;
+  height: 30px;
+   }
+   
+#tools-container {
+  background: #000;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: auto;
+  height: 20px;
+  padding: 10px;
         }
       ul {
         margin: 10px;
         padding: 10px;
         padding-bottom: 17%;
       }
-      .list-arab {
+      
+      .li-container {
+        list-style-type: none;
+      }
+      
+      .arab {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        font-family: "Lateef", serif;
           direction:rtl;
           list-style-type: none;
           font-size: 250%;
-          border-bottom: 2px solid #CCC;
+          font-weight: 300;
+          align-items: center;
+          border-bottom: 2px deepskyblue solid;
       }
-      .list-latin {
-        display: none;
+      .latin {
         direction:ltr;
 list-style-type: none;
-font-size: 12px;
+font-size: 15px;
+letter-spacing: 0.01rem;
+line-height: 15px;
       }
       
-      .list-terjemah {
-        display: none;
+      .terjemah {
         direction:ltr;
 list-style-type: none;
 font-size: 12px;
+line-height: 10px;
+margin: 0;
+padding: 0;
       }
-     section div {
+  section div {
       position: relative;
   font-size: small;
 }
@@ -160,16 +211,22 @@ font-size: 12px;
 
 .dark {background-color: #292c35;} /* #9b59b6 */
 
-body.dark li, body.dark .support a {color: #fff;}
+body.dark li, body.dark div, body.dark span, body.dark .support a {color: #fff;}
 
 #nama {
+text-align: center;
+font-size: 25px;
+line-height: 20px;
   background-color: #111;
   height: 26px;
+  min-width: 90px;
+  padding-left: 3px;
   border-radius: 20px;
   position: relative;
-  color: #fff;
-  
+  color: lightskyblue;
 }
+
+
 
 .checkbox {
   opacity: 0;
@@ -191,6 +248,7 @@ body.dark li, body.dark .support a {color: #fff;}
 #ball {
   font-size: 15px;
   text-align: center;
+  color: deepskyblue;
 }
 .fa-moon {color: #f1c40f;}
 
@@ -211,26 +269,56 @@ body.dark li, body.dark .support a {color: #fff;}
   transform: translateX(24px);
 }
 
-#play {
+#play-music {
+  position: relative;
+  right: 0;
+}
+.hide {
+  display: none;
 }
 
+.hover{
+  color: slategray;
+}
 
+.no {
+  position: relative;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+#tools-container {
+  width: 100%;
+  height: 30px;
+  background: sk;
+}
+
+.seek-bar{
+  bottom: -3px;
+  left: -2px;
+  direction:ltr;
+  display: flex;
+  position: absolute;
+  -webkit-appearance: none;
+  overflow: hidden;
+  width: 100%;
+  height: 2px;
+  border-radius: 10px;
+  background: deepskyblue;
+ cursor: pointer;
+}
+.seek-bar::-webkit-slider-thumb{
+  direction:ltr;
+  -webkit-appearance: none;
+  background: #000;
+  height: 20px;
+  width: 1px;
+  box-shadow: -400px 0 0 400px black;
+}
 
 /* Add these @keyframes to your CSS file */
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-30px);}
-    60% {transform: translateY(-15px);}
-}
 
-
-
- @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-
-}
