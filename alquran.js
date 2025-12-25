@@ -9,8 +9,7 @@ const audio =document.getElementById('audio');
      toolsCheckbox.checked = true;
   }
   
-  const id1=  new URLSearchParams(window.location.search).get("id");
-  const id = '2';
+  const id=  new URLSearchParams(window.location.search).get("id");
   const API_URL = 'https://equran.id/api/v2/surat/'
 
   async function fetchPosts() {
