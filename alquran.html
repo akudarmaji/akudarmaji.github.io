@@ -12,37 +12,40 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400&display=swap" rel="stylesheet">
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
        <style>
    </style>
 </head>
 <body>
-  <div class="d-flex justify-content-center">
+  <div class="">
     <div class="spinner-border" role="status" id="loading">
       <div class="spinner">
      </div>
       <img id="img" src = "imgs/img.svg" alt="My Happy SVG"/>
     </div>
-  </div>
+
+  <audio id="audio"></audio>
+<div>
   <img id="bismillah" src="imgs/bismillah.svg" alt="bismilllah">
+  
   <div id="container">
-  <div id="header5">
+  <div id="header">
   <div id="nama"></div>
 
   </div>
  <div id="header2">
-      <svg id="play" width="26px" height="26px" viewBox="0 0 32 32" id="OBJECT" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#b2b2b2;}</style></defs><title/><rect class="cls-1" height="20" rx="3" ry="3" width="30" x="1" y="1"/><path d="M21.28,9.21,14.51,5.83a2,2,0,0,0-2.89,1.79v6.76a2,2,0,0,0,2,2,2,2,0,0,0,.89-.21l6.77-3.38a2,2,0,0,0,0-3.58Z"/><path class="cls-1" d="M30,28H10.21a1,1,0,0,1,0-2H30a1,1,0,0,1,0,2Z"/><path class="cls-1" d="M6,28H2a1,1,0,0,1,0-2H6a1,1,0,1,1,0,2Z"/><path d="M8,23a3,3,0,0,0-3,3v2a3,3,0,0,0,6,0V26A3,3,0,0,0,8,23Z"/></svg>
+<input type="checkbox" id="tools" onclick="tools()">
+<label for="tools">tools</label>
  </div>
  <div id="header3">
-<input type="checkbox" id="latin" onclick="showLatin()">
-<label for="latin">Latin</label>
+<input type="checkbox" id="latin-checkbox">
+<label for="latin-checkbox">Latin</label>
  </div>
  <div id="header4">
- <input type="checkbox" id="terjemah" onclick="showTerjemah()">
-<label for="terjemah">Terjemah</label>
+ <input type="checkbox" id="checkbox-terjemah">
+<label for="checkbox-terjemah">Terjemah</label>
  </div>
- <div id="header">
+ <div id="header5">
      <input type="checkbox" class="checkbox" id="checkbox">
     <label for="checkbox" class="checkbox-label">
       <i class="fas fa-moon"></i>
@@ -51,13 +54,9 @@
     </label>
  </div>
   </div>
-
-
-
-  <nav id="nav" onclick="hideTerjemah()">
-    </nav>
   <section id="section">
     <ul id='ayat'>
+      <p id="arti"><p>
     </ul>
   </section>
   <div id="jumpToTop" onclick="scrollToTop()">
