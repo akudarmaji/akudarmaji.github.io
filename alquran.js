@@ -4,12 +4,14 @@ const audio =document.getElementById('audio');
   musicDurations = {}
 
   window.onload = ()=> {
+    checkbox.checked =true
      latinCheckbox.checked = true;
      terjemahCheckbox.checked = true;
-     toolsCheckbox.checked = true;
+     toolsCheckbox.checked = true
   }
   
-  const id=  new URLSearchParams(window.location.search).get("id");
+  const id1=  new URLSearchParams(window.location.search).get("id");
+  const id = '80';
   const API_URL = 'https://equran.id/api/v2/surat/'
 
   async function fetchPosts() {
@@ -48,6 +50,7 @@ descHeader.innerText = `${nomor} | ${namaLatin} | ${arti} | ${jumlahAyat} ayat`
       <h1 class='arab'>${ayat[i].teksArab}
       </h1>
   <div class="tools-container">
+
   <div id="tool" class="tools1">${number}</div>
   <div id="tool" class="tools2"></div>
   <div id="tool" class="tools3"></div>
@@ -93,24 +96,25 @@ ula.addEventListener('click', (e) => {
   seekbar.addEventListener('change',()=>{
     audio.currentTime = seekbar.value
   })
- 
+
+  
   const arab = e.target.className == 'arab'
     arab ? active(e) : stop(e);
+    
   })
+  
+  
   
   
   function active(e) {
     e.target.appendChild(seekbar)
     e.target.classList.add('hover')
     audio.play()
- 
   }
-    
-    
-    
   function stop(e) {
   e.target.classList.remove('hover')
   }
+  
   
   window.onscroll = function() {scrollFunction()
   };
@@ -130,6 +134,7 @@ ball.textContent = `${percent}`;
 
 
   const checkbox = document.getElementById("checkbox")
+  document.body.classList.add('dark')
 checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark")
 })
@@ -152,25 +157,13 @@ const latinCheckbox = document.getElementById('latin-checkbox');
     }
   })
   
- 
- 
-  function tools() {
-  const toolsCheckbox = document.getElementById('tools')
-  const toolsContainer = document.getElementsByClassName('tools-container');
-  if(toolsCheckbox.checked) {
-    for (let a of toolsContainer) {
-        a.style.display = 'flex'
-}
-  }else {
-        for (let a of toolsContainer) {
-      a.style.display = 'none'
-    }
+ const toolsCheckbox = document.getElementById('tools');
+const listTools = document.getElementsByClassName('tools-container');
+toolsCheckbox.addEventListener('change', () => {
+  for (let a of listTools) {
+    a.classList.toggle('hide');
   }
-}
-
-
-
-
+})
 
 
 function scrollToTop() {
