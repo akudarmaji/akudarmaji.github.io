@@ -1,5 +1,5 @@
-const id1=  new URLSearchParams(window.location.search).get("id");
-const id = '80';
+const id=  new URLSearchParams(window.location.search).get("id");
+
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
   let musicIndex = [];
