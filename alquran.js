@@ -1,16 +1,15 @@
+const id1=  new URLSearchParams(window.location.search).get("id");
+const id = '80';
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
   let musicIndex = [];
-  musicDurations = {}
 
   window.onload = ()=> {
     checkbox.checked =true
      latinCheckbox.checked = true;
      terjemahCheckbox.checked = true;
-     toolsCheckbox.checked = true
+     toolsCheckbox.checked = true;
   }
-  
-  const id=  new URLSearchParams(window.location.search).get("id");
   
   const API_URL = 'https://equran.id/api/v2/surat/'
 
@@ -25,12 +24,7 @@ const audio =document.getElementById('audio');
   }
     
   function show({data}) {
-    const nama = data.nama
-    const nomor = data.nomor
-    const namaLatin = data.namaLatin
-    const jumlahAyat = data.jumlahAyat
-    const ayat = data.ayat;
-    const arti = data.arti
+    const {ayat, nama, nomor, namaLatin,jumlahAyat, arti} = data;
     const judul = document.getElementById('nama')
     judul.innerText = nama
     const descHeader = document.getElementById('arti');
@@ -51,7 +45,7 @@ descHeader.innerText = `${nomor} | ${namaLatin} | ${arti} | ${jumlahAyat} ayat`
       </h1>
   <div class="tools-container">
 
-  <div id="tool" class="tools1">${number}</div>
+  <div onclick="desc(this);" id="tool" class="tools1">${number}</div>
   <div id="tool" class="tools2"></div>
   <div id="tool" class="tools3"></div>
 </div>
@@ -62,10 +56,8 @@ descHeader.innerText = `${nomor} | ${namaLatin} | ${arti} | ${jumlahAyat} ayat`
 
 
 let seekbar = document.createElement('input');
-seekbar.setAttribute('class','seek-bar')
-seekbar.setAttribute('type','range')
-seekbar.setAttribute('value','0')
-
+seekbar.setAttribute('class', 'seek-bar')
+seekbar.setAttribute('type', 'range')
 
 ula.addEventListener('click', (e) => {
   const seekBars = ula.querySelectorAll('h1 input')
@@ -74,10 +66,8 @@ ula.addEventListener('click', (e) => {
     audio.src = musicIndex[index]
 
   const lists = document.querySelectorAll('h1.arab');
- 
     lists.forEach((list,index)=> {
       list.classList.remove('hover')
-     
     })
   setTimeout(()=> {
     if(audio.duration = NaN) {
@@ -92,19 +82,16 @@ ula.addEventListener('click', (e) => {
     }else {
       seekbar.value = audio.currentTime;
     }
-},500)
+},100)
+
   seekbar.addEventListener('change',()=>{
     audio.currentTime = seekbar.value
   })
-
-  
+ 
   const arab = e.target.className == 'arab'
-    arab ? active(e) : stop(e);
+    arab ? active(e):stop(e);
     
   })
-  
-  
-  
   
   function active(e) {
     e.target.appendChild(seekbar)
@@ -165,6 +152,8 @@ toolsCheckbox.addEventListener('change', () => {
   }
 })
 
+ const desc = (e) =>{
+ }
 
 function scrollToTop() {
   document.body.scrollTop = 0;
