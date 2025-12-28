@@ -1,8 +1,6 @@
-const init = {
- url: new URLSearchParams(window.location.search).get("id"),
-  id: this.url ? this.url : 1,
-}
-
+const url = new URLSearchParams(window.location.search).get("id")
+let id = url === !null ? url : 1;
+  
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
   let musicIndex = [];
@@ -16,8 +14,7 @@ const audio =document.getElementById('audio');
   
   const API_URL = 'https://equran.id/api/v2/surat/'
 
-  async function fetchPosts(id) {
-    console.log(id)
+  async function fetchPosts() {
     const response = await fetch(`${API_URL}${id}`)
     let data = await response.json()
     if (response.ok) {
@@ -164,4 +161,4 @@ function scrollToTop() {
   document.documentElement.scrollTop = 0;
 }
 
-    fetchPosts(init.id)
+    fetchPosts()
