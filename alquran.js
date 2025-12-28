@@ -1,4 +1,6 @@
-const id=  new URLSearchParams(window.location.search).get("id");
+const init = {
+  id : new URLSearchParams(window.location.search).get("id")
+}
 
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
@@ -14,7 +16,7 @@ const audio =document.getElementById('audio');
   const API_URL = 'https://equran.id/api/v2/surat/'
 
   async function fetchPosts() {
-    const response = await fetch(`${API_URL}${id}`)
+    const response = await fetch(`${API_URL}${init.id = 1}`)
     let data = await response.json()
     if (response.ok) {
       show(data);
