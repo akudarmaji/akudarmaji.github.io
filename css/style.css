@@ -7,18 +7,6 @@ body {
     *{
     scroll-behavior:smooth;
         }
-        
-  #tool ~ .viewer {
-  max-height: 0;
-	overflow: hidden;
-  }      
-        
- .viewer{
-   max-height: 100px;
-   background: blue;
-   z-index: 1000;
- }
- 
  
 #container {
   color: deepskyblue;
@@ -36,10 +24,8 @@ body {
   align-items: center;
   position: relative;
   z-index: 1;
-  padding: 3px;
-  min-width: 100px;
+  
   border-radius: 16px;
-  background: #e0e0e4;
   border: 1px deepskyblue solid;
       }
       
@@ -50,11 +36,18 @@ body {
   position: relative;
   width: auto;
   z-index: 1;
-  padding: 3px;
   border-radius: 10px;
-  background: #e0e0e4;
   border: 1px deepskyblue solid;
       }
+      
+  #tools,#latin-checkbox,#checkbox-terjemah {
+    accent-color: deepskyblue;
+    background-color: deepskyblue;
+  }
+  
+  #tools:checked ~ label, #latin-checkbox:checked ~ label, #checkbox-terjemah:checked ~ label {
+    color: deepskyblue;
+  }
       
 #header3 {
   display: flex;
@@ -63,9 +56,7 @@ body {
   position: relative;
   width: auto;
   z-index: 1;
-  padding: 3px;
   border-radius: 10px;
-background: #e0e0e4;
 border: 1px deepskyblue solid;
   }
 
@@ -76,9 +67,7 @@ border: 1px deepskyblue solid;
   position: relative;
   width: auto;
   z-index: 1;
-  padding: 3px;
   border-radius: 10px;
-background: #e0e0e4;
 border: 1px deepskyblue solid;
       }
       
@@ -87,11 +76,9 @@ border: 1px deepskyblue solid;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding : 3px;
-  width: 57px;
+  width: auto;
   z-index: 1;
   border-radius: 16px;
-  background: #e0e0e4;
   border: 1px deepskyblue solid;
 }
 
@@ -105,6 +92,7 @@ justify-content: start;
 }
 
 #tool {
+  
   width: 28px;
   height: 28px;
   background: deepskyblue;
@@ -112,6 +100,10 @@ justify-content: start;
   margin-top: 0;
   text-align: center;
   font-size: 20px;
+}
+
+.tools1 {
+  background: red;
 }
 
 
@@ -150,17 +142,6 @@ justify-content: start;
   width: 30px;
   height: 30px;
    }
-   
-#tools-container {
-  background: #000;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: auto;
-  height: 20px;
-  padding: 10px;
-        }
       ul {
         margin: 10px;
         padding: 10px;
@@ -229,7 +210,6 @@ body.dark p, body.dark li, body.dark span, body.dark .support a {color: #fff;}
 text-align: center;
 font-size: 25px;
 line-height: 20px;
-  background-color: #111;
   height: 26px;
   min-width: 90px;
   padding-left: 3px;
@@ -246,7 +226,6 @@ line-height: 20px;
 }
 
 .checkbox-label {
-  background-color: #111;
   width: 50px;
   height: 26px;
   border-radius: 50px;
@@ -258,7 +237,8 @@ line-height: 20px;
   align-items: center;
 }
 #ball {
-  font-size: 15px;
+  border: 1px deepskyblue solid;
+  font-size: 14px;
   text-align: center;
   color: deepskyblue;
 }
