@@ -16,7 +16,7 @@ const audio =document.getElementById('audio');
   
   const API_URL = 'https://equran.id/api/v2/surat/'
 
-  async function fetchPosts(id=1) {
+  async function fetchPosts(id) {
     console.log(id)
     const response = await fetch(`${API_URL}${id}`)
     let data = await response.json()
