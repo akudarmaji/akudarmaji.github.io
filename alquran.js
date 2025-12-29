@@ -1,9 +1,8 @@
 
-  const url = new URLSearchParams(window.location.search).get("id")
+  const id = new URLSearchParams(window.location.search).get("id")
   let description = ''
   let tafsirnya = [];
   
-const id = 85;
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
   let musicIndex = [];
