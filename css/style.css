@@ -9,13 +9,21 @@ body {
         }
  
 #container {
-  color: deepskyblue;
+  margin: 8px;
+  color: rgba(0,191,255, 0.5);
+  border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     z-index: 1;
     position: sticky;
-    top: 10px;
+    top: 5px;
+    /* From https://css.glass */
+background: rgba(0, 191, 255, 0.30);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+border: 1px solid rgba(0, 191, 255, 0.3);
 }
 
 #header {
@@ -24,8 +32,8 @@ body {
   align-items: center;
   position: relative;
   z-index: 1;
-  
-  border-radius: 16px;
+  margin: 2px;
+  border-radius: 10px;
   border: 1px deepskyblue solid;
       }
       
@@ -36,17 +44,19 @@ body {
   position: relative;
   width: auto;
   z-index: 1;
+  margin: 2px;
   border-radius: 10px;
   border: 1px deepskyblue solid;
       }
       
   #tools,#latin-checkbox,#checkbox-terjemah {
+    color: rgba(0,191,255, 0.5);
     accent-color: deepskyblue;
     background-color: deepskyblue;
   }
   
   #tools:checked ~ label, #latin-checkbox:checked ~ label, #checkbox-terjemah:checked ~ label {
-    color: deepskyblue;
+    color: rgba(0,191,255, 0.7);
   }
       
 #header3 {
@@ -56,6 +66,7 @@ body {
   position: relative;
   width: auto;
   z-index: 1;
+  margin: 2px;
   border-radius: 10px;
 border: 1px deepskyblue solid;
   }
@@ -67,6 +78,7 @@ border: 1px deepskyblue solid;
   position: relative;
   width: auto;
   z-index: 1;
+  margin: 2px;
   border-radius: 10px;
 border: 1px deepskyblue solid;
       }
@@ -78,7 +90,8 @@ border: 1px deepskyblue solid;
   position: relative;
   width: auto;
   z-index: 1;
-  border-radius: 16px;
+  margin: 2px;
+  border-radius: 10px;
   border: 1px deepskyblue solid;
 }
 
@@ -91,19 +104,27 @@ flex-wrap: wrap;
 justify-content: start;
 }
 
-#tool {
-  
+.tools1 {
   width: 28px;
   height: 28px;
-  background: deepskyblue;
+  border: 2px deepskyblue solid;
   margin:1px;
-  margin-top: 0;
+  border-radius: 10px;
+  margin-top: 5px;
   text-align: center;
-  font-size: 20px;
+  font-size: 14px;
+  transition: width .3s, height .3s;
 }
 
-.tools1 {
-  background: red;
+.desc {
+  text-align: justify;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 12px;
+  height: 150px;
+  width: 100%;
+  overflow: scroll;
+  transition: width .3s, height .3s;
 }
 
 
@@ -281,12 +302,6 @@ line-height: 20px;
   justify-content: center;
   align-items: center;
   font-size: 15px;
-}
-
-#tools-container {
-  width: 100%;
-  height: 30px;
-  background: sk;
 }
 
 .seek-bar{
