@@ -1,6 +1,9 @@
-const url = new URLSearchParams(window.location.search).get("id")
-let id = url === !null ? url : 1;
+
+  const url = new URLSearchParams(window.location.search).get("id")
+  let description = ''
+  let tafsirnya = [];
   
+const id = 85;
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
   let musicIndex = [];
@@ -11,20 +14,24 @@ const audio =document.getElementById('audio');
      terjemahCheckbox.checked = true;
      toolsCheckbox.checked = true;
   }
-  
+  const API_TAFSIR = 'https://equran.id/api/v2/tafsir/'
   const API_URL = 'https://equran.id/api/v2/surat/'
 
-  async function fetchPosts() {
+  async function fetchPosts(id) {
     const response = await fetch(`${API_URL}${id}`)
     let data = await response.json()
+    const response2 = await fetch(`${API_TAFSIR}${id}`)
+    let tafsir = await response2.json()
+    const tafsir2 = tafsir.data.tafsir;
+
     if (response.ok) {
-      show(data);
+      show(data,tafsir2);
       document.getElementById('loading').style.display = 'none'
         
     }
   }
     
-  function show({data}) {
+  function show({data},tafsir) {
     const {ayat, nama, nomor, namaLatin,jumlahAyat, arti} = data;
     const judul = document.getElementById('nama')
     judul.innerText = nama
@@ -36,20 +43,20 @@ descHeader.innerText = `${nomor} | ${namaLatin} | ${arti} | ${jumlahAyat} ayat`
     const audioURL = Object.values(url)[0]
     
       musicIndex.push(audioURL);
+      tafsirnya.push(tafsir[i].teks)
   const noAyat = ayat[i].nomorAyat;
   const number = new Intl.NumberFormat('ar-EG').format(noAyat)
     
   const liTagAll = `<li li-index=${i} class="li-container">
+    <div class="tools-container">
+  <div onclick="desc(this)" id="${noAyat}" class="tools1">${noAyat}</div>
+  <div id="tool" class="tools2"></div>
+  <div id="tool" class="tools3"></div>
+</div>
       <p class='latin'>${ayat[i].teksLatin}</p>
       <p class='terjemah'>${ayat[i].teksIndonesia}</p>
       <h1 class='arab'>${ayat[i].teksArab}
       </h1>
-  <div class="tools-container">
-
-  <div onclick="desc(this);" id="tool" class="tools1">${number}</div>
-  <div id="tool" class="tools2"></div>
-  <div id="tool" class="tools3"></div>
-</div>
       </li>`;
     ula.insertAdjacentHTML('beforeend', liTagAll);
     } 
@@ -67,7 +74,7 @@ ula.addEventListener('click', (e) => {
     audio.src = musicIndex[index]
 
   const lists = document.querySelectorAll('h1.arab');
-    lists.forEach((list,index)=> {
+    lists.forEach((list)=> {
       list.classList.remove('hover')
     })
   setTimeout(()=> {
@@ -153,7 +160,15 @@ toolsCheckbox.addEventListener('change', () => {
   }
 })
 
- const desc = (e) =>{
+ const desc = function (e) {
+   console.log(tafsirnya[1])
+  e.classList.toggle('desc')
+  const id = e.getAttribute('id')
+  const teksContoh  = tafsirnya[id-1]
+  let teks = e.innerText
+  e.innerText = teks == id ? teksContoh : id;
+  
+  
  }
 
 function scrollToTop() {
@@ -161,4 +176,4 @@ function scrollToTop() {
   document.documentElement.scrollTop = 0;
 }
 
-    fetchPosts()
+    fetchPosts(id)
