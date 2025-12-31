@@ -61,7 +61,6 @@ justify-content: start;
   border: 2px deepskyblue solid;
   margin:1px;
   border-radius: 10px;
-  margin-top: 5px;
   text-align: center;
   font-size: 16px;
   transition: width .3s, height .3s;
@@ -85,7 +84,8 @@ justify-content: start;
 }
 
 #bismillah {
-    margin: 20px;
+    margin-left: 20px;
+    margin-bottom: 2px;
     width:80vw;
     height: 40px;
     }
@@ -94,7 +94,7 @@ justify-content: start;
   text-align: center;
   text-align: center;
   font-size: 10px;
-  top: 60px;
+  top: 70px;
 }
     
 #img {
@@ -114,17 +114,17 @@ justify-content: start;
   width: 30px;
   height: 30px;
    }
-      ul {
-        margin: 10px;
-        padding: 10px;
-        padding-bottom: 17%;
-      }
+  ul {
+   margin: 0;
+   padding: 0;
+   padding-bottom: 17%;
+   }
       
       .li-container {
         list-style-type: none;
       }
       
-      .arab {
+  .arab {
         margin: 0;
         padding: 0;
         display: flex;
@@ -139,26 +139,17 @@ justify-content: start;
           border-bottom: 2px deepskyblue solid;
       }
       .latin {
-        direction:ltr;
-list-style-type: none;
+        padding: 0;
+        margin:0;
 font-size: 15px;
-letter-spacing: 0.01rem;
-line-height: 15px;
       }
       
-      .terjemah {
-        direction:ltr;
-list-style-type: none;
+ .terjemah {
 font-size: 12px;
-line-height: 10px;
 margin: 0;
 padding: 0;
       }
-  section div {
-      position: relative;
-  font-size: small;
-}
-
+     
 .spinner {
       position: absolute;
     top: 50%;
@@ -181,7 +172,7 @@ body.dark p, body.dark li, body.dark span, body.dark .support a {color: #fff;}
 #nama {
 text-align: center;
 font-size: 18px;
-line-height: 20px;
+top:-5;
   height: 26px;
   min-width: 70px;
   padding-left: 3px;
@@ -215,9 +206,6 @@ line-height: 20px;
   text-align: center;
   color: deepskyblue;
 }
-.fa-moon {color: #f1c40f;}
-
-.fa-sun {color: #f39c12;}
 
 .checkbox-label .ball {
   background-color: #fff;
@@ -234,26 +222,12 @@ line-height: 20px;
   transform: translateX(24px);
 }
 
-#play-music {
-  position: relative;
-  right: 0;
-}
 .hide {
   display: none;
 }
 
 .hover{
   color: slategray;
-}
-
-.no {
-  position: relative;
-  display: flex;
-  width: 30px;
-  height: 30px;
-  justify-content: center;
-  align-items: center;
-  font-size: 15px;
 }
 
 .seek-bar{
