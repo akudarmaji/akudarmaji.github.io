@@ -9,7 +9,7 @@ body {
         }
  
 #container {
-  margin: 8px;
+  margin: 0px;
   color: rgba(0,191,255, 0.5);
   border-radius: 10px;
     display: flex;
@@ -19,11 +19,6 @@ body {
     position: sticky;
     top: 5px;
     /* From https://css.glass */
-background: rgba(0, 191, 255, 0.30);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(4px);
--webkit-backdrop-filter: blur(4px);
-border: 1px solid rgba(0, 191, 255, 0.3);
 }
 
 #header {
@@ -32,23 +27,15 @@ border: 1px solid rgba(0, 191, 255, 0.3);
   align-items: center;
   position: relative;
   z-index: 1;
-  margin: 2px;
+  margin: 1px;
   border-radius: 10px;
   border: 1px deepskyblue solid;
-      }
-      
-#header2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: auto;
-  z-index: 1;
-  margin: 2px;
-  border-radius: 10px;
-  border: 1px deepskyblue solid;
-      }
-      
+ background: rgba(0, 191, 255, 0.30);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+  }
+  
   #tools,#latin-checkbox,#checkbox-terjemah {
     color: rgba(0,191,255, 0.5);
     accent-color: deepskyblue;
@@ -59,42 +46,6 @@ border: 1px solid rgba(0, 191, 255, 0.3);
     color: rgba(0,191,255, 0.7);
   }
       
-#header3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: auto;
-  z-index: 1;
-  margin: 2px;
-  border-radius: 10px;
-border: 1px deepskyblue solid;
-  }
-
-#header4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: auto;
-  z-index: 1;
-  margin: 2px;
-  border-radius: 10px;
-border: 1px deepskyblue solid;
-      }
-      
-#header5 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: auto;
-  z-index: 1;
-  margin: 2px;
-  border-radius: 10px;
-  border: 1px deepskyblue solid;
-}
-
 .tools-container {
   display: flex;
   position: relative;
@@ -112,7 +63,7 @@ justify-content: start;
   border-radius: 10px;
   margin-top: 5px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   transition: width .3s, height .3s;
 }
 
@@ -120,11 +71,11 @@ justify-content: start;
   text-align: justify;
   border-radius: 10px;
   padding: 8px;
-  font-size: 12px;
   height: 150px;
   width: 100%;
   overflow: scroll;
-  transition: width .3s, height .3s;
+  line-height: 12px;
+  transition: width .2s, height .2s;
 }
 
 
@@ -229,10 +180,10 @@ body.dark p, body.dark li, body.dark span, body.dark .support a {color: #fff;}
 
 #nama {
 text-align: center;
-font-size: 25px;
+font-size: 18px;
 line-height: 20px;
   height: 26px;
-  min-width: 90px;
+  min-width: 70px;
   padding-left: 3px;
   border-radius: 20px;
   position: relative;
@@ -258,6 +209,7 @@ line-height: 20px;
   align-items: center;
 }
 #ball {
+  border-radius: 50%;
   border: 1px deepskyblue solid;
   font-size: 14px;
   text-align: center;
