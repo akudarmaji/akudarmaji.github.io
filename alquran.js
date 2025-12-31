@@ -1,8 +1,7 @@
 
   const id = new URLSearchParams(window.location.search).get("id")
-  let description = ''
   let tafsirnya = [];
-  
+
 const ula = document.getElementById('ayat');
 const audio =document.getElementById('audio');
   let musicIndex = [];
@@ -31,12 +30,13 @@ const audio =document.getElementById('audio');
   }
     
   function show({data},tafsir) {
+   // const previus = data.suratSebelumnya.nomor
     const {ayat, nama, nomor, namaLatin,jumlahAyat, arti} = data;
     const judul = document.getElementById('nama')
     judul.innerText = nama
     const descHeader = document.getElementById('arti');
 descHeader.innerText = `${nomor} | ${namaLatin} | ${arti} | ${jumlahAyat} ayat`
-    
+  
   for (let i = 0; i < ayat.length; i++) {
     const url = ayat[i].audio
     const audioURL = Object.values(url)[0]
@@ -127,6 +127,7 @@ ball.textContent = `${percent}`;
 }
 
 
+
   const checkbox = document.getElementById("checkbox")
   document.body.classList.add('dark')
 checkbox.addEventListener("change", () => {
@@ -160,7 +161,6 @@ toolsCheckbox.addEventListener('change', () => {
 })
 
  const desc = function (e) {
-   console.log(tafsirnya[1])
   e.classList.toggle('desc')
   const id = e.getAttribute('id')
   const teksContoh  = tafsirnya[id-1]
