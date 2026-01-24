@@ -1,16 +1,112 @@
+
+.lightMode {
+    --bg-color: #171923;
+    --bg-light: #232535;
+    --font-color: #c5cddb;
+    --font-light: #EBEBEB;
+    --hover: #525268
+}
+:root {
+  --bg-color: #E8E6DC;
+  --bg-light: #DCDACA;
+  --font-color: #3D3D3D;
+  --font-light: #202020;
+  --hover : #B5CBBF
+}
+/* end switch color theme */
+#toggle {
+  pointer: cursor !important;
+}
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
 body {
+  color: var(--font-light);
+  background-color: var(--bg-color);
+  transition: all 500ms;
+  margin:0;
+  padding: 0;
   font-family: "Lateef", serif;
-    font-weight: 200;
+    font-weight: 300;
     font-style: normal;
-        }
+  }
         
-    *{
+  *{
     scroll-behavior:smooth;
-        }
- 
-#container {
-  margin: 0px;
-  color: rgba(0,191,255, 0.5);
+  }
+  #load{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #app {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    direction: rtl;
+  }
+  
+  
+  #list-menu {
+    display: flex;
+    direction: ltr;
+    justify-content: flex-start;
+    position: absolute;
+    left: 0;
+  }
+  
+  #list-menu #list {
+    min-width: 200px;
+    height: 1.5rem;
+    background: var(--font-color);
+    display: none;
+  }
+  .show {
+    display: inline-block;
+  }
+  
+  #list-menu #humber {
+  }
+  
+  #humber:active {
+    background: red;
+    border-radius: 50%;
+  }
+  .card {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    min-height: 5rem;
+    border-bottom: 1px solid var(--font-color);
+  }
+  .scalaton {
+    width: 100%;
+    height: 100px;
+    margin: 10px;
+    background: gray;
+    border-radius: 10px;
+    animation: skeleton-loading 1s linear infinite alternate;
+    
+  }
+  
+ .container-logo {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+ }
+#btn-next {
+  border: none;
+  font-size: .6rem;
+  color: var(--clr);
+  opacity: 0.3;
+  background: #00000000;
+}
+#navigation {
+  margin-left: 10px;
+  margin-right: 5px ;
   border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -18,240 +114,88 @@ body {
     z-index: 1;
     position: sticky;
     top: 5px;
+    font-size: 1.3rem;
     /* From https://css.glass */
 }
 
 #header {
+  padding: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   z-index: 1;
   margin: 1px;
+  opacity: 1;
   border-radius: 10px;
-  border: 1px deepskyblue solid;
- background: rgba(0, 191, 255, 0.30);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(4px);
--webkit-backdrop-filter: blur(4px);
-  }
-  
-  #tools,#latin-checkbox,#checkbox-terjemah {
-    color: rgba(0,191,255, 0.5);
-    accent-color: deepskyblue;
-    background-color: deepskyblue;
+  border: 1px var(--drk) solid;
+ background: var(--bgc);
   }
   
   #tools:checked ~ label, #latin-checkbox:checked ~ label, #checkbox-terjemah:checked ~ label {
     color: rgba(0,191,255, 0.7);
   }
-      
-.tools-container {
-  display: flex;
-  position: relative;
-  width: 100%;
-  height: auto;
-flex-wrap: wrap;
-justify-content: start;
-}
-
-.tools1 {
-  width: 28px;
-  height: 28px;
-  border: 2px deepskyblue solid;
-  margin:1px;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 16px;
-  transition: width .3s, height .3s;
-}
-
-.desc {
-  text-align: justify;
-  border-radius: 10px;
-  padding: 8px;
-  height: 150px;
-  width: 100%;
-  overflow: scroll;
-  line-height: 12px;
-  transition: width .2s, height .2s;
-}
-
-
-.container-arti {
- position: relative;
- background: blue;
-}
 
 #bismillah {
-    margin-left: 20px;
-    margin-bottom: 2px;
-    width:80vw;
     height: 40px;
+    margin: 20px;
     }
-#arti {
-  position: absolute;
-  text-align: center;
-  text-align: center;
-  font-size: 10px;
-  top: 70px;
-}
-    
-#img {
-  top: 20%;
-  position: fixed;
-  display: block;
-  z-index: 9999;
-   }
-   
-#jumpToTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    }
-        
-#jump {
-  width: 30px;
-  height: 30px;
-   }
-  ul {
-   margin: 0;
-   padding: 0;
-   padding-bottom: 17%;
-   }
-      
-      .li-container {
-        list-style-type: none;
-      }
       
   .arab {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: row;
-        position: relative;
-        font-family: "Lateef", serif;
-          direction:rtl;
-          list-style-type: none;
-          font-size: 250%;
-          font-weight: 300;
-          align-items: center;
-          border-bottom: 2px deepskyblue solid;
-      }
-      .latin {
-        padding: 0;
-        margin:0;
-font-size: 15px;
-      }
-      
- .terjemah {
-font-size: 12px;
-margin: 0;
-padding: 0;
-      }
-     
-.spinner {
-      position: absolute;
-    top: 50%;
-    left: 45%;
-    width: 40px;
-    height: 40px;
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    font-family: "Lateef", serif;
+    direction:rtl;
+    list-style-type: none;
+    font-size: 250%;
+    font-weight: 300;
+    align-items: center;
+  }
 
 
 * {box-sizing: border-box;}
 
-.dark {background-color: #292c35;} /* #9b59b6 */
-
-body.dark p, body.dark li, body.dark span, body.dark .support a {color: #fff;}
-
-#nama {
-text-align: center;
-font-size: 18px;
-top:-5;
-  height: 26px;
-  min-width: 70px;
-  padding-left: 3px;
-  border-radius: 20px;
-  position: relative;
-  color: lightskyblue;
-}
-
-
-
-.checkbox {
-  opacity: 0;
-  position: absolute;
-}
-
-.checkbox-label {
-  width: 50px;
-  height: 26px;
-  border-radius: 50px;
-  position: relative;
-  padding: 5px;
-  cursor: pointer;
+#footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#ball {
-  border-radius: 50%;
-  border: 1px deepskyblue solid;
-  font-size: 14px;
-  text-align: center;
-  color: deepskyblue;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+  background: var(--hover);
+  visibility: hidden;
 }
 
-.checkbox-label .ball {
-  background-color: #fff;
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  left: 2px;
-  top: 2px;
-  border-radius: 50%;
-  transition: transform 0.2s linear;
-}
 
-.checkbox:checked + .checkbox-label .ball {
-  transform: translateX(24px);
-}
-
-.hide {
-  display: none;
-}
-
-.hover{
-  color: slategray;
-}
-
-.seek-bar{
-  bottom: -3px;
-  left: -2px;
-  direction:ltr;
-  display: flex;
-  position: absolute;
-  -webkit-appearance: none;
-  overflow: hidden;
+#myRange {
   width: 100%;
   height: 2px;
-  border-radius: 10px;
-  background: deepskyblue;
- cursor: pointer;
-}
-.seek-bar::-webkit-slider-thumb{
-  direction:ltr;
-  -webkit-appearance: none;
-  background: #000;
-  height: 20px;
-  width: 1px;
-  box-shadow: -400px 0 0 400px black;
+  background: var(--bg-color);
+  color: var(--font-color);
 }
 
+.footer-player {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playing {
+  background: var(--hover);
+  border-radius: 10px;
+  border: 1px solid var(--drk);
+  opacity : 1;
+}
 /* Add these @keyframes to your CSS file */
 
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
