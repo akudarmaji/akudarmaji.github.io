@@ -4,8 +4,7 @@ import {audioPause, loadAudio, playAud} from '/main-quran/loadAudio.js';
 
 
 //const API_TAFSIR = 'https://equran.id/api/v2/tafsir/'
-  //const id = new URLSearchParams(window.location.search).get("id");
- let id = 1;
+  let id = new URLSearchParams(window.location.search).get("id");
   
   let indexGlobal = 0;
   let audioUrl = [];
