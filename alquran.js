@@ -7,10 +7,10 @@ import {audioPause, loadAudio, playAud} from '/main-quran/loadAudio.js';
  // let id = new URLSearchParams(window.location.search).get("id");
  let id = 0;
  const pathname = window.location.pathname;
- if (pathname === '/alquran.html') {
-   id = 1;
- }else {
+ if (!pathname === '/alquran.html') {
    id = new URLSearchParams(window.location.search).get("id");
+ }else {
+   id = 1;
  }
   let indexGlobal = 0;
   let audioUrl = [];
