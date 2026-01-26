@@ -1,54 +1,61 @@
 <html lang="en">
-  <head>
-  <meta charset='UTF-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Alquran</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lateef:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" title="" type="" />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Alquran</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lateef:wght@400&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+            title=""
+            type=""
+        />
+    </head>
+    <body>
+        <section class="container-logo">
+            <audio id="audio"></audio>
+            <div id="toggle-dark">
+                <i id="toggle" class="fa-solid fa-sun">Light</i>
+            </div>
+            <div id="header">
+                <img id="bismillah" src="imgs/bismillah.svg" alt="bismilllah" />
+            </div>
+            <div id="next-ayat">
+                <button id="btn-next" type="submit">next</button>
+                <i class="fa-solid fa-angle-right"></i>
+            </div>
+        </section>
+        <audio id="audio" src=""></audio>
+        <nav id="navigation">
+            <div class="header">
+                <select id="select-ayat" name="select-ayat">
+                </select>
+            </div>
+            <select id="drop-down-title" name="drop-down-title"></select>
+        </nav>
+        <footer id="footer">
+            <input
+                id="myRange"
+                type="range"
+                name="rng"
+                min="0"
+                step="0.25"
+                value="0"
+            />
+            <div class="footer-player">
+                <span id="title-onplay"></span>
+                <span id="no-play">1</span>
+            </div>
+        </footer>
+        <div id="app"></div>
+    </body>
 
-  </head>
-  <body>
-  <section class="container-logo">
-    <audio id="audio"></audio>
-    <img id="bismillah" src="imgs/bismillah.svg" alt="bismilllah">
-  </section>
- <audio id="audio" src=""></audio>
-  <nav id="navigation">
-    <div id="header">
-      <i id="tools" class="fa-notdog fa-solid fa-gear fa-2xs"></i>
-    </div>
-     <div id="header">
-<i id="toggle" class="fa-light fa-sun fa-2xs">dark</i>
- </div>
-  <div id="header">
-    <span cl id="title"></span>
- </div>
- <div id="header">
-   <button id="btn-next" type="submit">next</button>
-   <i class="fa-solid fa-angle-right"></i>
- </div>
-</nav>
-<footer id="footer">
-  <input id="myRange" type="range" name="rng" min="0" step="0.25" value="0">
-  <div class="footer-player">
-    <span id="title-onplay"></span>
-    <span id="no-play">1</span>
-  </div>
-</footer>
- <div id="app">
- </div>
-</body>
-
-<script src="alquran.js" defer type="module"></script>
-
-</html> 
-
-
-
-
-
-
+    <script src="alquran.js" defer type="module"></script>
+</html>
