@@ -1,3 +1,20 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--font-light);
+    background-color: var(--bg-color);
+    transition: all 500ms;
+    margin: 0;
+    padding: 0;
+    font-family: "Lateef", serif;
+    font-weight: 300;
+    font-style: normal;
+}
 .lightMode {
     --bg-color: #171923;
     --bg-light: #232535;
@@ -16,31 +33,122 @@
 #toggle {
     pointer: cursor !important;
 }
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    color: var(--font-light);
-    background-color: var(--bg-color);
-    transition: all 500ms;
-    margin: 0;
-    padding: 0;
-    font-family: "Lateef", serif;
-    font-weight: 300;
-    font-style: normal;
-}
-
-* {
-    scroll-behavior: smooth;
-}
 #load {
     display: flex;
     flex-wrap: wrap;
 }
+select,
+select:active,
+select:hover,
+select:open {
+    text-transform: uppercase;
+    background: var(--bg-color);
+    color: var(--font-color);
+    height: 1.3rem;
+}
 
+option {
+    display: flex;
+    justify-content: flex-start;
+    border: 2px solid #dddddd;
+    background: var(--bg-color);
+    transition: 0.4s;
+}
+
+button {
+    background: var(--bg-color);
+    text-transform: uppercase;
+    font-weight: 200;
+    color: var(--font-color);
+    height: 1.3rem;
+    font-size: 10px;
+    padding-left: 3px;
+    transition: 0.2s;
+    border: 1px solid var(--font-color);
+}
+button i {
+    transition: 0.3s ease-in-out;
+    margin-left: 3px;
+    position: relative;
+    display: inline-block;
+}
+button:focus {
+}
+
+button:focus i,
+button:active i,
+button:hover i {
+    transform: rotate(180deg);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 2px);
+    min-width: 100px;
+    right: 0;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+    opacity: 1;
+    padding: 5px;
+    background: var(--bg-color);
+    border: solid 1px var(--font-color);
+    visibility: hidden;
+}
+
+.active {
+    visibility: visible;
+    transition: 0.1s ease-in-out;
+}
+
+.tools {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border: solid 0.5px var(--font-color);
+    background: var(--bg-color);
+    z-index: 20;
+}
+.tool {
+    width: 100%;
+    display: flex;
+    padding: 4px;
+    justify-content: space-between;
+    align-items: center;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    border: 0.5px solid var(--font-color);
+}
+.switch::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--font-color);
+    top: 0.5px;
+    left: 1px;
+}
+.checkbox:checked + .switch::after {
+    left: 20px;
+}
+.checkbox:checked + .switch {
+    background-color: var(--bg-color);
+}
+.checkbox {
+    display: none;
+}
 #app {
     display: flex;
     justify-content: center;
@@ -75,8 +183,9 @@ body {
 }
 .card {
     display: flex;
-    justify-content: space-between;
-    width: 95%;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
     min-height: 5rem;
     border-bottom: 1px solid var(--font-color);
 }
@@ -100,9 +209,15 @@ body {
 #btn-next {
     border: none;
     font-size: 0.6rem;
-    color: var(--clr);
+    color: var(--font-color);
     opacity: 0.3;
     background: #00000000;
+}
+
+.tool-button {
+    width: 10px;
+    height: 10px;
+    background: red;
 }
 #navigation {
     margin-left: 10px;
@@ -117,7 +232,13 @@ body {
     font-size: 1.3rem;
     /* From https://css.glass */
 }
-
+.navigation {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
 #header {
     padding: 2px;
     display: flex;
@@ -132,12 +253,6 @@ body {
     background: var(--bgc);
 }
 
-#tools:checked ~ label,
-#latin-checkbox:checked ~ label,
-#checkbox-terjemah:checked ~ label {
-    color: rgba(0, 191, 255, 0.7);
-}
-
 #bismillah {
     height: 40px;
     margin: 20px;
@@ -145,18 +260,14 @@ body {
 #next-ayat {
     display: flex;
     justify-content: center;
-align-items:  center;
+    align-items: center;
     position: absolute;
     top: 5px;
     right: 0;
 }
-#toggle-dark {
-    position: absolute;
-    top: 5px;
-    left: 0;
-}
 .arab {
     width: 100%;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -198,10 +309,16 @@ align-items:  center;
 }
 
 .playing {
+    width: 100%;
     background: var(--hover);
-    border-radius: 10px;
     border: 1px solid var(--drk);
     opacity: 1;
+}
+
+.terjemah {
+direction: ltr;
+    width: 100%;
+    background: var(--bg-color);
 }
 /* Add these @keyframes to your CSS file */
 
