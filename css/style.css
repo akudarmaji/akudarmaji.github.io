@@ -316,9 +316,18 @@ button:hover i {
 }
 
 .terjemah {
-direction: ltr;
+    direction: ltr;
     width: 100%;
     background: var(--bg-color);
+padding: 10px;
+    text-align: justify;
+}
+.tafsir {
+    direction: ltr;
+    width: 100%;
+    background: var(--bg-color);
+    padding: 10px;
+    text-align: justify;
 }
 /* Add these @keyframes to your CSS file */
 
