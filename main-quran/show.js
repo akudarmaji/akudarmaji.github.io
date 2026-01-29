@@ -6,11 +6,8 @@ export function show(ayats) {
     for (var i = 0; i < ayats.length; i++) {
         content += `
       <div class="card">
-        <h3 id="" class="arab">${ayats[i].teksArab}</h3>
-        <div id="list-menu">
         <i id="humber" class="fa-solid fa-ellipsis"></i>
-        <div id="list"></div>
-        </div>
+        <h3 id="" class="arab">${ayats[i].teksArab}</h3>
       </div>`;
     }
     return content;
@@ -52,4 +49,23 @@ export function loadTitleNext(data) {
     } else {
         return "finish";
     }
+}
+
+export function showTerjemah(ayats) {
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card, i) => {
+        const div = document.createElement("div");
+        div.setAttribute("class", "terjemah");
+        div.innerText = ayats[i].teksIndonesia;
+        card.appendChild(div);
+    });
+    return terjemah.checked = true;
+}
+
+export function hideTerjemah() {
+    const terjemahs = document.querySelectorAll(".terjemah");
+    terjemahs.forEach((terjemah, i) => {
+        terjemah.remove(terjemah);
+    });
+    terjemah.checked = false;
 }
