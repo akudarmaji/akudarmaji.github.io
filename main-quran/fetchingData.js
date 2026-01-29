@@ -1,5 +1,6 @@
 import {show} from "/main-quran/show.js";
 const url = "https://equran.id/api/v2/surat/";
+const urlTafsir = "https://equran.id/api/v2/tafsir/";
 export async function fetchingData(id) {
     let controller = new AbortController();
     setTimeout(() => controller.abort(), 10000);
@@ -35,4 +36,16 @@ export async function fetchingTitle() {
         title.push(data.namaLatin);
     }
     return title;
+}
+
+export async function fetchingTafsir(id) {
+    try {
+        let response = await fetch(`${urlTafsir}${id}`);
+        const {
+            data: {tafsir}
+        } = await response.json();
+        return tafsir;
+    } catch (err) {
+        console.error("Error:", err);
+    }
 }

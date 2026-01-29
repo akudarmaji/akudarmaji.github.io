@@ -59,7 +59,7 @@ export function showTerjemah(ayats) {
         div.innerText = ayats[i].teksIndonesia;
         card.appendChild(div);
     });
-    return terjemah.checked = true;
+    terjemah.checked = true;
 }
 
 export function hideTerjemah() {
@@ -68,4 +68,23 @@ export function hideTerjemah() {
         terjemah.remove(terjemah);
     });
     terjemah.checked = false;
+}
+
+export function showTafsir(tafsir) {
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card, i) => {
+        const div = document.createElement("div");
+        div.setAttribute("class", "tafsir");
+        div.innerText = tafsir[i].teks;
+        card.appendChild(div);
+    });
+    tafsir.checked = true;
+}
+
+export function hideTafsir() {
+    const tafsir = document.querySelectorAll(".tafsir");
+    tafsir.forEach((taf, i) => {
+        taf.remove(taf);
+    });
+    tafsir.checked = false;
 }
