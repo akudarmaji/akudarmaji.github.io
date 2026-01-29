@@ -21,9 +21,6 @@
     <body>
         <section class="container-logo">
             <audio id="audio"></audio>
-            <div id="toggle-dark">
-                <i id="toggle" class="fa-solid fa-sun">Light</i>
-            </div>
             <div id="header">
                 <img id="bismillah" src="imgs/bismillah.svg" alt="bismilllah" />
             </div>
@@ -34,11 +31,39 @@
         </section>
         <audio id="audio" src=""></audio>
         <nav id="navigation">
-            <div class="header">
-                <select id="select-ayat" name="select-ayat">
-                </select>
+            <div class="navigation">
+                <select id="select-ayat" name="select-ayat"></select>
+                <div id="toggle-dark">
+                    <i id="toggle" class="fa-regular fa-sun"></i>
+                </div>
             </div>
-            <select id="drop-down-title" name="drop-down-title"></select>
+            <div class="navigation">
+                <select id="drop-down-title" name="drop-down-title"></select>
+                <div class="dropdown-container">
+                    <button id="btn-tools">
+                        tools
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </button>
+                    <div class="dropdown">
+                        <div class="tool">
+                            <input
+                                type="checkbox"
+                                id="terjemah"
+                                class="checkbox"
+                            />terjemah
+                            <label for="terjemah" class="switch"></label>
+                        </div>
+                        <div class="tool">
+                            <input
+                                type="checkbox"
+                                id="tafsir"
+                                class="checkbox"
+                            />tafsir
+                            <label for="tafsir" class="switch"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
         <footer id="footer">
             <input
