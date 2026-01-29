@@ -1,5 +1,11 @@
-import {fetchingData, fetchingTitle} from "/main-quran/fetchingData.js";
 import {
+    fetchingTafsir,
+    fetchingData,
+    fetchingTitle
+} from "/main-quran/fetchingData.js";
+import {
+    hideTafsir,
+    showTafsir,
     hideTerjemah,
     showTerjemah,
     selectedAyat,
@@ -16,6 +22,7 @@ let indexGlobal = 0; //control index ayat
 let audioUrl = [];
 let lengthAyat = 0;
 let objAyat;
+let arrTafsir;
 
 const app = document.getElementById("app");
 const audio = document.getElementById("audio");
@@ -23,10 +30,17 @@ const btnNext = document.getElementById("btn-next");
 const titleNext = document.getElementById("btn-next");
 const selectAyat = document.getElementById("select-ayat");
 const titleOnChange = document.getElementById("drop-down-title");
-const terjemah = document.getElementById("terjemah");
-const toggle = document.querySelector("#toggle");
-window.addEventListener("load", loadPage(id), false);
+const btnTools = document.getElementById("btn-tools");
 
+const terjemah = document.getElementById("terjemah");
+const tafsir = document.getElementById("tafsir");
+const toggle = document.querySelector("#toggle");
+
+window.addEventListener("load", loadPage(id), false);
+window.onscroll = () => {
+    const btn = document.querySelector(".dropdown");
+    btn.classList.remove("active");
+};
 //dropdown list surat////////
 window.addEventListener("DOMContentLoaded", async () => {
     const titleArray = await fetchingTitle();
@@ -38,11 +52,13 @@ async function loadPage(id) {
     const {data, ayat} = await fetchingData(id);
     objAyat = ayat;
     app.innerHTML = show(ayat);
-    showTerjemah(objAyat);
     selectAyat.innerHTML = selectedAyat(ayat);
     titleNext.innerText = loadTitleNext(data);
     audioUrl = await loadAudio(ayat);
     lengthAyat = await (ayat.length - 1);
+    terjemah.checked ? showTerjemah(objAyat) : hideTerjemah();
+    arrTafsir = await fetchingTafsir(id);
+    tafsir.checked = false;
     let arabs = document.querySelectorAll(".arab");
     arabs.forEach((arab, i) => {
         arab.addEventListener("click", e => {
@@ -131,7 +147,6 @@ selectAyat.onchange = function () {
     control(element, indexGlobal);
 };
 
-const btnTools = document.getElementById("btn-tools");
 btnTools.addEventListener("click", () => {
     const btn = document.querySelector(".dropdown");
     btn.classList.toggle("active");
@@ -139,4 +154,7 @@ btnTools.addEventListener("click", () => {
 
 terjemah.addEventListener("click", () => {
     terjemah.checked ? showTerjemah(objAyat) : hideTerjemah();
+});
+tafsir.addEventListener("click", () => {
+    tafsir.checked ? showTafsir(arrTafsir) : hideTafsir();
 });
