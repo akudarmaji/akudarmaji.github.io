@@ -9,7 +9,6 @@ import {
     hideTerjemah,
     showTerjemah,
     selectedAyat,
-    loadTitleNext,
     show,
     seekBar,
     dropDown
@@ -26,17 +25,17 @@ let arrTafsir;
 
 const app = document.getElementById("app");
 const audio = document.getElementById("audio");
-const btnNext = document.getElementById("btn-next");
-const titleNext = document.getElementById("btn-next");
 const selectAyat = document.getElementById("select-ayat");
 const titleOnChange = document.getElementById("drop-down-title");
 const btnTools = document.getElementById("btn-tools");
-
 const terjemah = document.getElementById("terjemah");
 const tafsir = document.getElementById("tafsir");
 const toggle = document.querySelector("#toggle");
 
-window.addEventListener("load", loadPage(id), false);
+window.addEventListener("load", () => {
+    id = localStorage.idSurat;
+    loadPage(id);
+});
 window.onscroll = () => {
     const btn = document.querySelector(".dropdown");
     btn.classList.remove("active");
@@ -45,15 +44,19 @@ window.onscroll = () => {
 window.addEventListener("DOMContentLoaded", async () => {
     const titleArray = await fetchingTitle();
     dropDown(titleArray);
-    titleOnChange.value = id;
+    titleOnChange.value = localStorage.idSurat ? localStorage.idSurat : id;
+    indexGlobal = Number(localStorage.idAyat);
+    selectAyat.value = Number(localStorage.idAyat) + 1;
+    const arabs = document.querySelectorAll(".arab");
+    const element = arabs[indexGlobal];
+    control(element, indexGlobal);
 });
 //render halaman awal --+--
-async function loadPage(id) {
+export async function loadPage(id) {
     const {data, ayat} = await fetchingData(id);
     objAyat = ayat;
     app.innerHTML = show(ayat);
     selectAyat.innerHTML = selectedAyat(ayat);
-    titleNext.innerText = loadTitleNext(data);
     audioUrl = await loadAudio(ayat);
     lengthAyat = await (ayat.length - 1);
     terjemah.checked ? showTerjemah(objAyat) : hideTerjemah();
@@ -63,8 +66,18 @@ async function loadPage(id) {
     arabs.forEach((arab, i) => {
         arab.addEventListener("click", e => {
             indexGlobal = i;
+            localStorage.setItem("idSurat", id);
+            localStorage.setItem("idAyat", indexGlobal);
             const element = arabs[indexGlobal];
             control(element, indexGlobal);
+        });
+    });
+    const humbers = document.querySelectorAll("#humber");
+    humbers.forEach(humber => {
+        humber.addEventListener("click", e => {
+            const idAyat = e.target.parentElement.id;
+            localStorage.setItem("idAyat", idAyat);
+            localStorage.setItem("idSurat", id);
         });
     });
 }
@@ -77,16 +90,16 @@ async function control(element, indexGlobal) {
 }
 
 //seekBar footer setiap kali audio onPlay
-audio.addEventListener("timeupdate", () => {
-    seekBar();
-});
-
+audio.addEventListener("timeupdate", seekBar);
 //audio berakhir berlanjut ke ayat selanjutnya jika sudah ada di lastchild akan pindah ke surat selanjutnya-----
 audio.addEventListener("ended", async () => {
     if (indexGlobal == lengthAyat) {
         id++;
+
         await loadPage(id);
         indexGlobal = 0;
+        localStorage.setItem("idSurat", id);
+        localStorage.setItem("idAyat", indexGlobal);
         const arabs = document.querySelectorAll(".arab");
         const element = await arabs[indexGlobal];
         control(element, indexGlobal);
@@ -94,23 +107,10 @@ audio.addEventListener("ended", async () => {
     } else {
         const arabs = document.querySelectorAll(".arab");
         indexGlobal++;
+        localStorage.setItem("idAyat", indexGlobal);
         const element = arabs[indexGlobal];
         control(element, indexGlobal);
     }
-});
-
-//next button ke surat selanjutnya//
-btnNext.addEventListener("click", () => {
-    window.scrollTo({
-        top: 80
-    });
-    id++;
-    titleOnChange.value = id;
-    titleOnChange.value = id;
-    loadPage(id);
-    document.getElementById("footer").style.visibility = "hidden";
-    console.log(checkTerjemah);
-    audio.pause();
 });
 
 //toggle darkLight
@@ -128,8 +128,11 @@ function modeSwitch() {
 
 //tag Select list Surat (114) selected surat
 titleOnChange.onchange = function () {
+    const loading = document.querySelector(".loader");
+    loading.style.display = "block";
     id = this.value;
     titleOnChange.value = id;
+    localStorage.setItem("idSurat", id);
     loadPage(id);
     const element = document.querySelectorAll(".arab")[indexGlobal];
     audioPause(element);
@@ -142,6 +145,7 @@ titleOnChange.onchange = function () {
 selectAyat.onchange = function () {
     indexGlobal = Number(this.value) - 1;
     selectAyat.value = indexGlobal;
+    localStorage.setItem("idAyat", indexGlobal);
     const arabs = document.querySelectorAll(".arab");
     const element = arabs[indexGlobal];
     control(element, indexGlobal);
