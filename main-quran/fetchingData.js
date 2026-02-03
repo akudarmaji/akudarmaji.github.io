@@ -1,4 +1,3 @@
-import {show} from "/main-quran/show.js";
 const url = "https://equran.id/api/v2/surat/";
 const urlTafsir = "https://equran.id/api/v2/tafsir/";
 export async function fetchingData(id) {
@@ -9,6 +8,8 @@ export async function fetchingData(id) {
             signal: controller.signal
         });
         if (response.ok) {
+            const loading = document.querySelector(".loader");
+            loading.style.display = "none";
             const {
                 data,
                 data: {ayat}
@@ -20,7 +21,6 @@ export async function fetchingData(id) {
     } catch (err) {
         if (err.name == "AbortError") {
             // handle abort()
-            location.reload();
             alert("Aborted!, silakan refresh halaman");
         } else {
             throw err;
