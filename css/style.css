@@ -174,12 +174,28 @@ button:hover i {
     display: inline-block;
 }
 
-#list-menu #humber {
+#humber {
+    z-index: 2;
+    position: absolute;
+    color: red;
+    left: 0;
 }
 
 #humber:active {
     background: red;
     border-radius: 50%;
+}
+#bookmark {
+    width: auto;
+    z-index: 100;
+    position: absolute;
+    bottom: 0;
+    font-size: 0.6rem;
+    border: 2px solid red;
+    padding: 2px;
+}
+#bookmark:active {
+    background: red;
 }
 .card {
     display: flex;
@@ -257,14 +273,6 @@ button:hover i {
     height: 40px;
     margin: 20px;
 }
-#next-ayat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 5px;
-    right: 0;
-}
 .arab {
     width: 100%;
     padding: 10px;
@@ -319,7 +327,8 @@ button:hover i {
     direction: ltr;
     width: 100%;
     background: var(--bg-color);
-padding: 10px;
+    font-style: italic;
+    padding: 10px;
     text-align: justify;
 }
 .tafsir {
@@ -331,11 +340,41 @@ padding: 10px;
 }
 /* Add these @keyframes to your CSS file */
 
-@keyframes skeleton-loading {
-    0% {
-        background-color: hsl(200, 20%, 80%);
-    }
+/* HTML: <div class="loader"></div> */
+.loader {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: 6px;
+    background:
+        conic-gradient(from 135deg at top, currentColor 90deg, #0000 0) 0
+            calc(50% - 4px) / 17px 8.5px,
+        radial-gradient(
+                farthest-side at bottom left,
+                #0000 calc(100% - 6px),
+                currentColor calc(100% - 5px) 99%,
+                #0000
+            )
+            top right/50% 50% content-box content-box,
+        radial-gradient(
+                farthest-side at top,
+                #0000 calc(100% - 6px),
+                currentColor calc(100% - 5px) 99%,
+                #0000
+            )
+            bottom / 100% 50% content-box content-box;
+    background-repeat: no-repeat;
+    animation: l11 1s infinite linear;
+}
+@keyframes l11 {
     100% {
-        background-color: hsl(200, 20%, 95%);
+        transform: rotate(1turn);
     }
 }
