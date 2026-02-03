@@ -1,12 +1,9 @@
-import {fetchingData} from "/main-quran/fetchingData.js";
-import {loadAudio} from "/main-quran/loadAudio.js";
-
 export function show(ayats) {
     let content = "";
     for (var i = 0; i < ayats.length; i++) {
         content += `
-      <div class="card">
-        <i id="humber" class="fa-solid fa-ellipsis"></i>
+      <div id="${i}" class="card">
+<i id="humber" class="fa-regular fa-bookmark"></i>
         <h3 id="" class="arab">${ayats[i].teksArab}</h3>
       </div>`;
     }
