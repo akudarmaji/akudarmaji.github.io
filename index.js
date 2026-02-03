@@ -33,8 +33,8 @@ const tafsir = document.getElementById("tafsir");
 const toggle = document.querySelector("#toggle");
 
 window.addEventListener("load", () => {
-    id = localStorage.idSurat;
-    loadPage(id);
+    id = localStorage.idSurat ? localStorage.idSurat : 1;
+loadPage(id)
 });
 window.onscroll = () => {
     const btn = document.querySelector(".dropdown");
@@ -78,6 +78,7 @@ export async function loadPage(id) {
             const idAyat = e.target.parentElement.id;
             localStorage.setItem("idAyat", idAyat);
             localStorage.setItem("idSurat", id);
+            alert("bookmark tersimpan");
         });
     });
 }
