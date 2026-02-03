@@ -15,8 +15,8 @@ import {
 } from "/main-quran/show.js";
 import {audioPause, loadAudio, playAud} from "/main-quran/loadAudio.js";
 //const API_TAFSIR = 'https://equran.id/api/v2/tafsir/'
-//let id = new URLSearchParams(window.location.search).get("id");
-let id = 1; //kontrol index surat
+let id = new URLSearchParams(window.location.search).get("id");
+//let id = 1; //kontrol index surat
 let indexGlobal = 0; //control index ayat
 let audioUrl = [];
 let lengthAyat = 0;
