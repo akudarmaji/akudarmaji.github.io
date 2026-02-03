@@ -177,25 +177,14 @@ button:hover i {
 #humber {
     z-index: 2;
     position: absolute;
-    color: red;
+    color: var(--font-color);
     left: 0;
 }
 
-#humber:active {
-    background: red;
+#humber:active,
+#humber:hover {
+    color: red;
     border-radius: 50%;
-}
-#bookmark {
-    width: auto;
-    z-index: 100;
-    position: absolute;
-    bottom: 0;
-    font-size: 0.6rem;
-    border: 2px solid red;
-    padding: 2px;
-}
-#bookmark:active {
-    background: red;
 }
 .card {
     display: flex;
