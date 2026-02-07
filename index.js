@@ -34,23 +34,27 @@ const toggle = document.querySelector("#toggle");
 
 window.addEventListener("load", () => {
     id = localStorage.idSurat ? localStorage.idSurat : 1;
-loadPage(id)
+    loadPage(id);
+    loadHistory();
 });
 window.onscroll = () => {
     const btn = document.querySelector(".dropdown");
     btn.classList.remove("active");
 };
 //dropdown list surat////////
-window.addEventListener("DOMContentLoaded", async () => {
+async function loadHistory() {
     const titleArray = await fetchingTitle();
     dropDown(titleArray);
     titleOnChange.value = localStorage.idSurat ? localStorage.idSurat : id;
-    indexGlobal = Number(localStorage.idAyat);
-    selectAyat.value = Number(localStorage.idAyat) + 1;
-    const arabs = document.querySelectorAll(".arab");
+    let arabs = document.querySelectorAll(".arab");
+    indexGlobal = localStorage.idAyat ? Number(localStorage.idAyat) : 0;
+    selectAyat.value = indexGlobal + 1;
+    indexGlobal = localStorage.idAyat ? Number(localStorage.idAyat) : 0;
+    selectAyat.value = indexGlobal + 1;
     const element = arabs[indexGlobal];
     control(element, indexGlobal);
-});
+}
+;
 //render halaman awal --+--
 export async function loadPage(id) {
     const {data, ayat} = await fetchingData(id);
@@ -83,8 +87,8 @@ export async function loadPage(id) {
     });
 }
 //audio Play/Pause
-async function control(element, indexGlobal) {
-    const audio = document.getElementById("audio");
+function control(element, indexGlobal) {
+    //const audio = document.getElementById("audio");
     audio.src = audioUrl[indexGlobal];
     const playing = element.classList.contains("playing");
     playing ? audioPause(element, indexGlobal) : playAud(indexGlobal, element);
@@ -133,7 +137,6 @@ titleOnChange.onchange = function () {
     loading.style.display = "block";
     id = this.value;
     titleOnChange.value = id;
-    localStorage.setItem("idSurat", id);
     loadPage(id);
     const element = document.querySelectorAll(".arab")[indexGlobal];
     audioPause(element);
