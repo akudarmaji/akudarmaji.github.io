@@ -1,60 +1,41 @@
 import {
     fetchingTafsir,
     fetchingData,
-    fetchingTitle
+    loadMore
 } from "/main-quran/fetchingData.js";
-import {
-    hideTafsir,
-    showTafsir,
-    hideTerjemah,
-    showTerjemah,
-    selectedAyat,
-    show,
-    seekBar,
-    dropDown
-} from "/main-quran/show.js";
+import {selectedAyat, show, seekBar, dropDown} from "/main-quran/show.js";
 import {audioPause, loadAudio, playAud} from "/main-quran/loadAudio.js";
+import {titleArray} from "/main-quran/title.js";
 //const API_TAFSIR = 'https://equran.id/api/v2/tafsir/'
 //let id = new URLSearchParams(window.location.search).get("id");
 let id = 1; //kontrol index surat
-let indexGlobal = 0; //control index ayat
+let idAyat = 0; //control index ayat
 let audioUrl = [];
 let lengthAyat = 0;
 let objAyat;
 let arrTafsir;
-
 const app = document.getElementById("app");
 const audio = document.getElementById("audio");
+const lastRead = document.getElementById("btn-lastread");
 const selectAyat = document.getElementById("select-ayat");
 const titleOnChange = document.getElementById("drop-down-title");
-const btnTools = document.getElementById("btn-tools");
-const terjemah = document.getElementById("terjemah");
-const tafsir = document.getElementById("tafsir");
 const toggle = document.querySelector("#toggle");
-
-window.addEventListener("load", () => {
-    id = localStorage.idSurat ? localStorage.idSurat : 1;
+window.addEventListener("load", async () => {
     loadPage(id);
-    loadHistory();
+    dropDown(titleArray);
+    titleOnChange.value = id;
 });
-window.onscroll = () => {
-    const btn = document.querySelector(".dropdown");
-    btn.classList.remove("active");
-};
+
 //dropdown list surat////////
 async function loadHistory() {
-    const titleArray = await fetchingTitle();
-    dropDown(titleArray);
-    titleOnChange.value = localStorage.idSurat ? localStorage.idSurat : id;
-    let arabs = document.querySelectorAll(".arab");
-    indexGlobal = localStorage.idAyat ? Number(localStorage.idAyat) : 0;
-    selectAyat.value = indexGlobal + 1;
-    indexGlobal = localStorage.idAyat ? Number(localStorage.idAyat) : 0;
-    selectAyat.value = indexGlobal + 1;
-    const element = arabs[indexGlobal];
-    control(element, indexGlobal);
+    id = await localStorage.idSurat;
+    await loadPage(id);
+    idAyat = localStorage.idAyat;
+    titleOnChange.value = id;
+    const arabs = document.querySelectorAll(".arab");
+    arabs[idAyat].scrollIntoView({block: "center", behavior: "smooth"});
+    arabs[idAyat].classList.add("playing");
 }
-;
 //render halaman awal --+--
 export async function loadPage(id) {
     const {data, ayat} = await fetchingData(id);
@@ -63,17 +44,34 @@ export async function loadPage(id) {
     selectAyat.innerHTML = selectedAyat(ayat);
     audioUrl = await loadAudio(ayat);
     lengthAyat = await (ayat.length - 1);
-    terjemah.checked ? showTerjemah(objAyat) : hideTerjemah();
     arrTafsir = await fetchingTafsir(id);
-    tafsir.checked = false;
-    let arabs = document.querySelectorAll(".arab");
-    arabs.forEach((arab, i) => {
-        arab.addEventListener("click", e => {
-            indexGlobal = i;
-            localStorage.setItem("idSurat", id);
-            localStorage.setItem("idAyat", indexGlobal);
-            const element = arabs[indexGlobal];
-            control(element, indexGlobal);
+    const lastCardObserver = new IntersectionObserver(entries => {
+        const lastCard = entries[0];
+        if (lastCard.isIntersecting) {
+            lastCardObserver.unobserve(lastCard.target);
+            app.appendChild(loadMore(id));
+            const loadMorebtn = document.getElementById("load-more");
+            loadMorebtn.addEventListener("click", () => {
+                id <= 113 ? id++ : (id = 1);
+                titleOnChange.value = id;
+                loadPage(id);
+                scrollTop();
+            });
+        }
+    }, {});
+    const playPause = document.querySelectorAll("#play-pause");
+    playPause.forEach(el => {
+        el.addEventListener("click", e => {
+            const onPlaying = e.target.classList.contains("fa-play");
+            onPlaying ? playAudio(e) : pauseAudio(e);
+        });
+    });
+    lastCardObserver.observe(document.querySelector(".card:last-child"));
+    const verses = document.querySelectorAll("#tafsir");
+    verses.forEach(verse => {
+        verse.addEventListener("click", e => {
+            const onVerse = e.target.classList.contains("fa-eye-slash");
+            onVerse ? openVerse(e) : closeVerse(e);
         });
     });
     const humbers = document.querySelectorAll("#humber");
@@ -87,35 +85,15 @@ export async function loadPage(id) {
     });
 }
 //audio Play/Pause
-function control(element, indexGlobal) {
-    //const audio = document.getElementById("audio");
-    audio.src = audioUrl[indexGlobal];
-    const playing = element.classList.contains("playing");
-    playing ? audioPause(element, indexGlobal) : playAud(indexGlobal, element);
-}
 
 //seekBar footer setiap kali audio onPlay
 audio.addEventListener("timeupdate", seekBar);
 //audio berakhir berlanjut ke ayat selanjutnya jika sudah ada di lastchild akan pindah ke surat selanjutnya-----
 audio.addEventListener("ended", async () => {
-    if (indexGlobal == lengthAyat) {
-        id++;
-
-        await loadPage(id);
-        indexGlobal = 0;
-        localStorage.setItem("idSurat", id);
-        localStorage.setItem("idAyat", indexGlobal);
-        const arabs = document.querySelectorAll(".arab");
-        const element = await arabs[indexGlobal];
-        control(element, indexGlobal);
-        titleOnChange.value = id;
-    } else {
-        const arabs = document.querySelectorAll(".arab");
-        indexGlobal++;
-        localStorage.setItem("idAyat", indexGlobal);
-        const element = arabs[indexGlobal];
-        control(element, indexGlobal);
-    }
+    const playPause = document.querySelectorAll("#play-pause");
+    playPause.forEach(pP => {
+        pP.classList.replace("fa-pause", "fa-play");
+    });
 });
 
 //toggle darkLight
@@ -133,36 +111,71 @@ function modeSwitch() {
 
 //tag Select list Surat (114) selected surat
 titleOnChange.onchange = function () {
-    const loading = document.querySelector(".loader");
-    loading.style.display = "block";
     id = this.value;
     titleOnChange.value = id;
     loadPage(id);
-    const element = document.querySelectorAll(".arab")[indexGlobal];
-    audioPause(element);
+    audio.pause();
+    scrollTop();
+};
+
+//tag select list ayat; selected onPlay
+selectAyat.onchange = function () {
+    idAyat = Number(this.value) - 1;
+    const arabs = document.querySelectorAll(".arab");
+    arabs[idAyat].scrollIntoView({block: "center", behavior: "smooth"});
+};
+
+const scrollTop = () => {
+    audio.pause();
     window.scrollTo({
         top: 80
     });
 };
 
-//tag select list ayat; selected onPlay
-selectAyat.onchange = function () {
-    indexGlobal = Number(this.value) - 1;
-    selectAyat.value = indexGlobal;
-    localStorage.setItem("idAyat", indexGlobal);
-    const arabs = document.querySelectorAll(".arab");
-    const element = arabs[indexGlobal];
-    control(element, indexGlobal);
-};
+function playAudio(e) {
+    const playPause = document.querySelectorAll("#play-pause");
+    playPause.forEach(pP => {
+        pP.classList.replace("fa-pause", "fa-play");
+    });
+    const element = e.target;
+    const id = element.parentElement.id;
+    audio.src = audioUrl[id];
 
-btnTools.addEventListener("click", () => {
-    const btn = document.querySelector(".dropdown");
-    btn.classList.toggle("active");
-});
+    element.classList.replace("fa-play", "fa-pause");
+    audio.play();
+    document.getElementById("footer").style.visibility = "visible";
+}
+function pauseAudio(e) {
+    const element = e.target;
+    element.classList.replace("fa-pause", "fa-play");
+    audio.pause();
+}
 
-terjemah.addEventListener("click", () => {
-    terjemah.checked ? showTerjemah(objAyat) : hideTerjemah();
-});
-tafsir.addEventListener("click", () => {
-    tafsir.checked ? showTafsir(arrTafsir) : hideTafsir();
+function openVerse(e) {
+    const element = e.target;
+    const id = element.parentElement.id;
+    element.classList.replace("fa-eye-slash", "fa-eye");
+    const cards = document.querySelectorAll(".card");
+    const div = document.createElement("div");
+    div.setAttribute("class", "terjemah");
+    div.innerText = `Terjemah:\n${objAyat[id].teksIndonesia}\nTafsir:\n${arrTafsir[id].teks}`;
+    cards[id].appendChild(div);
+    element.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function closeVerse(e) {
+    const element = e.target;
+    const id = element.parentElement.id;
+    const verseShow = element.classList.contains("fa-eye");
+    if (verseShow) {
+        element.classList.replace("fa-eye", "fa-eye-slash");
+        const cards = document.querySelectorAll(".card");
+        cards[id].lastChild.remove();
+    }
+}
+
+lastRead.addEventListener("click", () => {
+    loadHistory();
 });
