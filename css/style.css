@@ -173,18 +173,20 @@ button:hover i {
 .show {
     display: inline-block;
 }
-
-#humber {
+.sortcut {
+    margin: 3px;
     z-index: 2;
-    position: absolute;
+    position: relative;
     color: var(--font-color);
-    left: 0;
+    display: flex;
+    justify-content: space-between;
+}
+#humber {
 }
 
 #humber:active,
 #humber:hover {
     color: red;
-    border-radius: 50%;
 }
 .card {
     display: flex;
@@ -209,8 +211,6 @@ button:hover i {
     align-items: center;
     width: 100%;
 }
-#logo {
-}
 #btn-next {
     border: none;
     font-size: 0.6rem;
@@ -231,7 +231,7 @@ button:hover i {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    z-index: 1;
+    z-index: 3;
     position: sticky;
     top: 5px;
     font-size: 1.3rem;
@@ -279,7 +279,6 @@ button:hover i {
 * {
     box-sizing: border-box;
 }
-
 #footer {
     display: flex;
     flex-direction: column;
@@ -316,7 +315,6 @@ button:hover i {
     direction: ltr;
     width: 100%;
     background: var(--bg-color);
-    font-style: italic;
     padding: 10px;
     text-align: justify;
 }
