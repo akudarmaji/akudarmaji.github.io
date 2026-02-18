@@ -3,7 +3,15 @@ export function show(ayats) {
     for (var i = 0; i < ayats.length; i++) {
         content += `
       <div id="${i}" class="card">
-<i id="humber" class="fa-regular fa-bookmark"></i>
+      <div id="${i}" class="sortcut">
+<div id="${i}">
+<i id="humber" class="fa-solid fa-bookmark"></i>
+</div>
+<div id="${i}">
+<i id="tafsir" class="fa-solid fa-eye-slash"></i>
+<i id="play-pause" class="fa-solid fa-play"></i>
+</div>
+      </div>
         <h3 id="" class="arab">${ayats[i].teksArab}</h3>
       </div>`;
     }
@@ -39,49 +47,3 @@ export function dropDown(titles) {
     }
 }
 
-export function loadTitleNext(data) {
-    if (data.suratSelanjutnya) {
-        const nextTitle = data.suratSelanjutnya.namaLatin;
-        return nextTitle;
-    } else {
-        return "finish";
-    }
-}
-
-export function showTerjemah(ayats) {
-    const cards = document.querySelectorAll(".card");
-    cards.forEach((card, i) => {
-        const div = document.createElement("div");
-        div.setAttribute("class", "terjemah");
-        div.innerText = ayats[i].teksIndonesia;
-        card.appendChild(div);
-    });
-    terjemah.checked = true;
-}
-
-export function hideTerjemah() {
-    const terjemahs = document.querySelectorAll(".terjemah");
-    terjemahs.forEach((terjemah, i) => {
-        terjemah.remove(terjemah);
-    });
-    terjemah.checked = false;
-}
-
-export function showTafsir(tafsir) {
-    const cards = document.querySelectorAll(".card");
-    cards.forEach((card, i) => {
-        const div = document.createElement("div");
-        div.setAttribute("class", "tafsir");
-        div.innerText = tafsir[i].teks;
-        card.appendChild(div);
-    });
-    tafsir.checked = true;
-}
-
-export function hideTafsir() {
-    const tafsir = document.querySelectorAll(".tafsir");
-    tafsir.forEach((taf, i) => {
-        taf.remove(taf);
-    });
-    tafsir.checked = false;
-}

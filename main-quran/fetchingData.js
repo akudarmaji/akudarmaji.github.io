@@ -28,15 +28,6 @@ export async function fetchingData(id) {
     }
 }
 
-export async function fetchingTitle() {
-    let title = [];
-    for (let i = 1; i <= 114; i++) {
-        let response = await fetch(`${url}${i}`);
-        const {data} = await response.json();
-        title.push(data.namaLatin);
-    }
-    return title;
-}
 
 export async function fetchingTafsir(id) {
     try {
@@ -48,4 +39,15 @@ export async function fetchingTafsir(id) {
     } catch (err) {
         console.error("Error:", err);
     }
+}
+
+export function loadMore(id) {
+    const loadMore = document.createElement("div");
+    const button = document.createElement("button");
+    button.setAttribute("id", "load-more");
+    button.innerText = "surat selanjutnya";
+
+    loadMore.setAttribute("class", "card");
+    loadMore.appendChild(button);
+    return loadMore;
 }
